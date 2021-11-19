@@ -72,6 +72,8 @@ aboutmenu = Menu(menubar, tearoff = 0)
 menubar.add_cascade(label = 'About', menu = aboutmenu)
 aboutmenu.add_command(label = "About", command = about_menu)
 aboutmenu.add_command(label = "Contribute")
+aboutmenu.add_command(label = "Help")
+
 aboutmenu.add_separator()
 
 root.config(menu=menubar)
