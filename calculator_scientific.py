@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+import math
 
 
 root = Tk()
@@ -8,6 +9,7 @@ root.geometry("410x450+0+0")
 
 e = Entry(root, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
+
 
 # mylabel1 = Label(root, text= "Welcome!")
 # mylabel1.grid(row=0, column=0, columnspan=1, padx=40, pady=20)
@@ -86,6 +88,7 @@ def button_click(number):
 
    check_error = "myerrorlabel" in globals()
    check_add = "mylabel_add" in globals()
+   check_pi = "mylabel_pi" in globals()
    check_sub = "mylabel_sub" in globals()
    check_mult = "mylabel_mult" in globals()
    check_div = "mylabel_div" in globals()
@@ -117,6 +120,10 @@ def button_click(number):
    
    if check_error == True:
         myerrorlabel.destroy()
+
+   if check_pi == True:
+        mylabel_pi.destroy()
+    
 
 def button_clear():
     e.delete(0, END) 
@@ -178,6 +185,15 @@ def button_sqr():
     f_num = float(first_number)
     e.delete(0, END)
 
+def button_pi():
+    first_number = e.get()
+    global f_num
+    global math
+    math = "pi"
+    f_num = float(first_number)
+    e.delete(0, END)
+   
+
 def button_equal():
     global second_number
     global myerrorlabel
@@ -185,6 +201,9 @@ def button_equal():
     try:
         if math == 'sqr':
             second_number = f_num
+
+        if math == 'pi':
+            second_number = '3.141592653589793'
 
         else:
             second_number = float(e.get())
@@ -226,6 +245,12 @@ def button_equal():
         if math == "sqr":
             e.insert(0, f_num * f_num)
             whatfunction_sqr()
+
+        if math == 'pi':
+            e.insert(0, f_num * 3.141592653589793)
+            whatfunction_pi()
+
+            
 
     except NameError:
         error = messagebox.askokcancel("Name Error ", "Please Enter an valid expression")
@@ -282,6 +307,12 @@ def whatfunction_sqr():
     if math == "sqr":
         mylabel_sqr = Label(root, text= str(f_num ) + " square")
         mylabel_sqr.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+
+def whatfunction_pi():
+    global mylabel_pi
+    if math == "pi":
+        mylabel_pi = Label(root, text= str(f_num ) + " pi")
+        mylabel_pi.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
   
 
 
@@ -309,6 +340,8 @@ Button_close_paranthesis = Button(root, text=")", padx=40, pady=20, command=lamb
 Button_remainder = Button(root, text="%", padx=35, pady=20, command=button_rem)
 Button_power = Button(root, text="pow", padx=30, pady=20, command=button_pow)
 Button_sqr = Button(root, text="sqr", padx=30, pady=20, command=button_sqr)
+Button_pi = Button(root, text="pi", padx=30, pady=20, command=button_pi)
+
 Button_exit = Button(root, text="Exit", padx=30, pady=20, command=button_exit)
 
 #Put buttons on screen
@@ -337,6 +370,7 @@ Button_divide.grid(row=5, column=3)
 
 Button_power.grid(row=2, column=4, columnspan=1)
 Button_sqr.grid(row=4, column=4, columnspan=1)
+Button_pi.grid(row=5, column=4, columnspan=1)
 
 
 Button_clear.grid(row=5, column=2, columnspan=1)
