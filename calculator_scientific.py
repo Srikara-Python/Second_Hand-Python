@@ -277,6 +277,14 @@ def button_equal():
             pass
         else:
             root.quit()
+            
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Please Enter an valid expression")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
+        
 
 
   ## Make our labels 
