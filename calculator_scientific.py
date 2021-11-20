@@ -234,13 +234,6 @@ def button_rem():
     f_num = float(first_number)
     e.delete(0, END)
 
-def button_pow():
-    first_number = e.get()
-    global f_num
-    global op
-    op = "**"
-    f_num = float(first_number)
-    e.delete(0, END)
 
 def button_sqr():
     first_number = e.get()
@@ -263,6 +256,17 @@ def button_sqrt():
     global a 
     op = "sqrt"
     f_num = float(first_number)
+    
+def button_pow():
+    first_number = e.get()
+    global f_num
+    global op
+    global a 
+    global powering
+    op = "**"
+    f_num = float(first_number)
+    e.delete(0, END)
+
 
 def button_equal():
     global second_number
@@ -308,10 +312,8 @@ def button_equal():
             e.insert(0, f_num % float(second_number))
             whatfunction_rem()
 
-
-
         if op == "**":
-            e.insert(0, f_num ** float(second_number))
+            e.insert(0, math.pow(f_num, second_number))
             whatfunction_pow()
 
 
