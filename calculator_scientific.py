@@ -8,14 +8,16 @@ import math
 root = Tk()
 root.title("Sceintific Calculator")
 root.geometry("410x450+0+0")
+root.resizable(False, False)
 orig_color = root.cget("background")
 root.configure(bg=orig_color)
 
-top = Toplevel()
-tell = Label(top, text="Make sure you read our help, about and contribute sections")
-thankyou = Label(top, text="Thankyou for using us , please do share and add suggetions to the link provided.")
-tell.pack()
-thankyou.pack()
+def new_win():
+    top = Toplevel()
+    tell = Label(top, text="Make sure you read our help, about and contribute sections")
+    thankyou = Label(top, text="Thankyou for using us , please do share and add suggetions to the link provided.")
+    tell.pack()
+    thankyou.pack()
 
 e = Entry(root, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
@@ -48,8 +50,13 @@ def dark_mode():
     Button_power.configure(bg="black", fg='white')
     Button_point.configure(bg="black", fg='white')
     Button_clear.configure(bg="black", fg='white')
-    darkmode.configure(bg="black", fg='white')
-    lightmode.configure(bg="black", fg='white')
+    Button_fact.configure(bg="black", fg='white')
+    aboutmenu.configure(bg="black", fg="white")
+    filemenu.configure(bg="black", fg="white")
+    settingsmenu.configure(bg="black", fg="white")
+    editmenu.configure(bg="black", fg="white")
+    # darkmode.configure(bg="black", fg='white')
+    # lightmode.configure(bg="black", fg='white')
     e.configure(bg="black", fg='white')
     menubar.configure(bg="black", fg='white')
       
@@ -80,16 +87,21 @@ def light_mode():
     Button_power.configure(bg=orig_color, fg="black")
     Button_point.configure(bg=orig_color, fg="black")
     Button_clear.configure(bg=orig_color, fg="black")
-    darkmode.configure(bg=orig_color, fg="black")
-    lightmode.configure(bg=orig_color, fg="black")
+    Button_fact.configure(bg=orig_color, fg="black")
+    settingsmenu.configure(bg=orig_color, fg="black")
+    aboutmenu.configure(bg=orig_color, fg="black")
+    editmenu.configure(bg=orig_color, fg="black")
+    filemenu.configure(bg=orig_color, fg="black")
+    # darkmode.configure(bg=orig_color, fg="black")
+    # lightmode.configure(bg=orig_color, fg="black")
     e.configure(bg=orig_color, fg="black")
     menubar.configure(bg=orig_color, fg="black")
 
 
-darkmode = Button(root, text="dark mode", command=dark_mode)
-darkmode.grid(row=0, column=3)
-lightmode = Button(root, text="light mode", command=light_mode)
-lightmode.grid(row=0, column=2)
+# darkmode = Button(root, text="dark mode", command=dark_mode)
+# darkmode.grid(row=0, column=3)
+# lightmode = Button(root, text="light mode", command=light_mode)
+# lightmode.grid(row=0, column=2)
 
 
   ### Define our buttons
@@ -117,7 +129,7 @@ menubar = Menu(root)
 
 # ManuBar 1 :
 filemenu = Menu(menubar, tearoff = 0)
-menubar.add_cascade(label = 'File', menu = filemenu)
+menubar.add_cascade(label = 'Mode', menu = filemenu)
 filemenu.add_command(label = "Standard", command = Standard)
 filemenu.add_command(label = "Scientific", command = Scientific)
 filemenu.add_separator()
@@ -138,6 +150,11 @@ aboutmenu.add_command(label = "Contribute")
 aboutmenu.add_command(label = "Help")
 
 aboutmenu.add_separator()
+
+settingsmenu = Menu(menubar, tearoff = 0)
+menubar.add_cascade(label = 'Settings', menu = settingsmenu)
+settingsmenu.add_command(label = "Light Theme", command = light_mode)
+settingsmenu.add_command(label = "Dark Theme", command = dark_mode)
 
 root.config(menu=menubar)
 
@@ -451,7 +468,7 @@ Button_8 = Button(root, text="8", padx=40, pady=20, command=lambda: button_click
 Button_9 = Button(root, text="9", padx=40, pady=20, command=lambda: button_click(9))
 Button_0 = Button(root, text="0", padx=40, pady=20, command=lambda: button_click(0))
 
-Button_add = Button(root, text="+", padx=30, pady=18, command=button_add)
+Button_add = Button(root, text="+", padx=35, pady=18, command=button_add)
 Button_equal = Button(root, text="=", padx=40, pady=20, command=button_equal)
 Button_clear = Button(root, text="clear", padx=30, pady=18, command=button_clear)
 Button_subtract = Button(root, text="-", padx=40, pady=20, command=button_subtract)
@@ -468,7 +485,7 @@ Button_sqrt = Button(root, text="sqrt", padx=30, pady=20, command=button_sqrt)
 Button_fact = Button(root, text="Fact", padx=30, pady=20, command=button_factorial)
 
 
-Button_exit = Button(root, text="Exit", padx=30, pady=20, command=button_exit)
+Button_exit = Button(root, text="Exit", padx=30, pady=18, command=button_exit)
 
 #Put buttons on screen
 Button_1.grid(row=4, column=0)
