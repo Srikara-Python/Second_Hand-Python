@@ -256,7 +256,8 @@ def button_sqrt():
     global a 
     op = "sqrt"
     f_num = float(first_number)
-    
+    e.delete(0, END)
+
 def button_pow():
     first_number = e.get()
     global f_num
@@ -326,7 +327,7 @@ def button_equal():
             whatfunction_pi()
 
         if op == 'sqrt':
-            e.insert(0, f_num ** 0.5)
+            e.insert(0, math.sqrt(f_num))
             whatfunction_sqrt()
 
     except NameError:
