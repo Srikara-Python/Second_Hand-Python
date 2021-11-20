@@ -1,7 +1,6 @@
 """ Scientific Calculator made using tkinter module
 Free to copy and open-source """
 
-
 from tkinter import *
 from tkinter import messagebox
 import math
@@ -20,6 +19,7 @@ thankyou.pack()
 
 e = Entry(root, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
+
 
 def dark_mode():
     root.configure(bg='black')
@@ -84,6 +84,7 @@ def light_mode():
     lightmode.configure(bg=orig_color, fg="black")
     e.configure(bg=orig_color, fg="black")
     menubar.configure(bg=orig_color, fg="black")
+
 
 darkmode = Button(root, text="dark mode", command=dark_mode)
 darkmode.grid(row=0, column=3)
