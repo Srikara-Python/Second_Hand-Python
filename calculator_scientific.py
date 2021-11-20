@@ -11,9 +11,14 @@ root = Tk()
 root.title("Sceintific Calculator")
 root.geometry("410x450+0+0")
 
+top = Toplevel()
+tell = Label(top, text="Make sure you read our help, about and contribute sections")
+thankyou = Label(top, text="Thankyou for using us , please do share and add suggetions to the link provided.")
+tell.pack()
+thankyou.pack()
+
 e = Entry(root, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
-
 
 
 # mylabel1 = Label(root, text= "Welcome!")
