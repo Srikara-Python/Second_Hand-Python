@@ -86,9 +86,9 @@ def light_mode():
     menubar.configure(bg=orig_color, fg="black")
 
 darkmode = Button(root, text="dark mode", command=dark_mode)
-darkmode.grid(row=0, column=2)
+darkmode.grid(row=0, column=3)
 lightmode = Button(root, text="light mode", command=light_mode)
-lightmode.grid(row=0, column=1)
+lightmode.grid(row=0, column=2)
 
 
   ### Define our buttons
