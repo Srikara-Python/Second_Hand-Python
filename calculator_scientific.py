@@ -2,7 +2,6 @@
 Free to copy and open-source """
 
 
-
 from tkinter import *
 from tkinter import messagebox
 import math
@@ -193,7 +192,6 @@ def button_sqr():
     global op
     op = "sqr"
     f_num = float(first_number)
-    e.delete(0, END)
 
 def button_pi():
     first_number = e.get()
@@ -201,7 +199,6 @@ def button_pi():
     global op
     op = "pi"
     f_num = float(first_number)
-    e.delete(0, END)
 
 def button_sqrt():
     first_number = e.get()
@@ -210,8 +207,6 @@ def button_sqrt():
     global a 
     op = "sqrt"
     f_num = float(first_number)
-    e.delete(0, END)
-   
 
 def button_equal():
     global second_number
