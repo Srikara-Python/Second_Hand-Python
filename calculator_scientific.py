@@ -279,13 +279,20 @@ def button_equal():
             root.quit()
             
     except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Please Enter an valid expression")
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
         if error2 == True:
             pass
         else:
             root.quit()
         
-
+    except ZeroDivisionError:
+        error3 = messagebox.askokcancel("Value Error ", "Did u learn maths ? you can't divide zero")
+        if error3 == True:
+            pass
+        else:
+            root.quit()
+        
+        
 
   ## Make our labels 
 def whatfunction_add():
