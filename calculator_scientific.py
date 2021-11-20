@@ -7,9 +7,13 @@ from tkinter import messagebox
 import math
 
 
+
 root = Tk()
 root.title("Sceintific Calculator")
 root.geometry("410x450+0+0")
+orig_color = root.cget("background")
+root.configure(bg=orig_color)
+
 
 top = Toplevel()
 tell = Label(top, text="Make sure you read our help, about and contribute sections")
@@ -17,9 +21,20 @@ thankyou = Label(top, text="Thankyou for using us , please do share and add sugg
 tell.pack()
 thankyou.pack()
 
+
+
+
 e = Entry(root, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
 
+def dark_mode():
+    root.configure(bg='black')
+
+def light_mode():
+    root.configure(bg=orig_color)
+
+darkmode = Button(root, text="dark mode", command=dark_mode).grid(row=0, column=2)
+lightmode = Button(root, text="light mode", command=light_mode).grid(row=0, column=1)
 
 # mylabel1 = Label(root, text= "Welcome!")
 # mylabel1.grid(row=0, column=0, columnspan=1, padx=40, pady=20)
