@@ -1,3 +1,8 @@
+""" Scientific Calculator made using tkinter module
+Free to copy and open-source """
+
+
+
 from tkinter import *
 from tkinter import messagebox
 import math
