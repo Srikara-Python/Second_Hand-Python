@@ -9,6 +9,7 @@ root = Tk()
 root.title("Sceintific Calculator")
 root.geometry("410x450+0+0")
 root.resizable(False, False)
+root.eval('tk::PlaceWindow . center')
 orig_color = root.cget("background")
 root.configure(bg=orig_color)
 
@@ -18,6 +19,9 @@ def new_win():
     thankyou = Label(top, text="Thankyou for using us , please do share and add suggetions to the link provided.")
     tell.pack()
     thankyou.pack()
+
+open_button = Button(root, text="Click Me!", command=new_win, padx=5, pady=5)
+open_button.grid(row=0, column=3)
 
 e = Entry(root, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
@@ -119,11 +123,13 @@ def about_menu():
 def Scientific():
     root.resizable(width=False, height=False)
     root.geometry("600x450+0+0")
+    root.eval('tk::PlaceWindow . center')
 
 
 def Standard():
     root.resizable(width=False, height=False)
     root.geometry("410x450+0+0")
+    root.eval('tk::PlaceWindow . center')
 
 menubar = Menu(root)
 
