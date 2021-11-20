@@ -106,7 +106,7 @@ def about_menu():
     
 def Scientific():
     root.resizable(width=False, height=False)
-    root.geometry("500x450+0+0")
+    root.geometry("600x450+0+0")
 
 
 def Standard():
@@ -157,6 +157,7 @@ def button_click(number):
    check_pow = "mylabel_pow" in globals()
    check_sqr = "mylabel_sqr" in globals()
    check_sqrt = "mylabel_sqrt" in globals()
+   check_fact = "mylabel_fact" in globals()
 
    if check_add == True:
         mylabel_add.destroy()
@@ -188,6 +189,9 @@ def button_click(number):
 
    if check_sqrt == True:
         mylabel_sqrt.destroy()
+        
+   if check_fact == True:
+        mylabel_fact.destroy()
     
 
 def button_clear():
@@ -248,7 +252,8 @@ def button_pi():
     global op
     op = "pi"
     f_num = float(first_number)
-
+    e.delete(0, END)
+    
 def button_sqrt():
     first_number = e.get()
     global f_num
@@ -268,6 +273,16 @@ def button_pow():
     f_num = float(first_number)
     e.delete(0, END)
 
+def button_factorial():
+    first_number = e.get()
+    global f_num
+    global op
+    global a 
+    global powering
+    op = "fact"
+    f_num = float(first_number)
+    e.delete(0, END)
+    
 
 def button_equal():
     global second_number
@@ -281,6 +296,9 @@ def button_equal():
             second_number = '3.141592653589793'
 
         elif op == 'sqrt':
+            second_number = f_num
+            
+        elif op == 'fact':
             second_number = f_num
 
         else:
@@ -325,10 +343,14 @@ def button_equal():
         if op == 'pi':
             e.insert(0, f_num * 3.141592653589793)
             whatfunction_pi()
-
+      
         if op == 'sqrt':
             e.insert(0, math.sqrt(f_num))
             whatfunction_sqrt()
+            
+        if op == 'fact':
+            e.insert(0, math.factorial(f_num))
+            whatfunction_fact()
 
     except NameError:
         error = messagebox.askokcancel("Name Error ", "Please Enter an valid expression")
@@ -409,6 +431,12 @@ def whatfunction_sqrt():
     if op == "sqrt":
         mylabel_sqrt = Label(root, text= str(f_num ) + " sqrt")
         mylabel_sqrt.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+        
+def whatfunction_fact():
+    global mylabel_fact
+    if op == "fact":
+        mylabel_fact = Label(root, text= str(f_num ) + " factorial")
+        mylabel_fact.grid(row=0, column=0, columnspan=2, padx=40, pady=3)      
 
 
 # Define buttons
@@ -437,6 +465,7 @@ Button_power = Button(root, text="pow", padx=30, pady=20, command=button_pow)
 Button_sqr = Button(root, text="sqr", padx=30, pady=20, command=button_sqr)
 Button_pi = Button(root, text="pi", padx=30, pady=20, command=button_pi)
 Button_sqrt = Button(root, text="sqrt", padx=30, pady=20, command=button_sqrt)
+Button_fact = Button(root, text="Fact", padx=30, pady=20, command=button_factorial)
 
 
 Button_exit = Button(root, text="Exit", padx=30, pady=20, command=button_exit)
@@ -469,6 +498,8 @@ Button_power.grid(row=2, column=4, columnspan=1)
 Button_sqr.grid(row=4, column=4, columnspan=1)
 Button_pi.grid(row=5, column=4, columnspan=1)
 Button_sqrt.grid(row=6, column=4, columnspan=1)
+Button_fact.grid(row=2, column=5, columnspan=1)
+
 
 
 
