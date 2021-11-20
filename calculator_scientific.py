@@ -6,14 +6,11 @@ from tkinter import *
 from tkinter import messagebox
 import math
 
-
-
 root = Tk()
 root.title("Sceintific Calculator")
 root.geometry("410x450+0+0")
 orig_color = root.cget("background")
 root.configure(bg=orig_color)
-
 
 top = Toplevel()
 tell = Label(top, text="Make sure you read our help, about and contribute sections")
@@ -21,37 +18,77 @@ thankyou = Label(top, text="Thankyou for using us , please do share and add sugg
 tell.pack()
 thankyou.pack()
 
-
-
-
 e = Entry(root, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
 
 def dark_mode():
     root.configure(bg='black')
-
+    Button_0.configure(bg="black", fg='white')  
+    Button_1.configure(bg="black", fg='white')
+    Button_2.configure(bg="black", fg='white')
+    Button_3.configure(bg="black", fg='white')
+    Button_4.configure(bg="black", fg='white')
+    Button_5.configure(bg="black", fg='white')
+    Button_6.configure(bg="black", fg='white')
+    Button_7.configure(bg="black", fg='white')
+    Button_8.configure(bg="black", fg='white')
+    Button_9.configure(bg="black", fg='white')
+    Button_add.configure(bg="black", fg='white')
+    Button_subtract.configure(bg="black", fg='white')
+    Button_divide.configure(bg="black", fg='white')
+    Button_multiply.configure(bg="black", fg='white')
+    Button_open_paranthesis.configure(bg="black", fg='white')
+    Button_close_paranthesis.configure(bg="black", fg='white')
+    Button_equal.configure(bg="black", fg='white')
+    Button_exit.configure(bg="black", fg='white')
+    Button_pi.configure(bg="black", fg='white')
+    Button_sqr.configure(bg="black", fg='white')
+    Button_sqrt.configure(bg="black", fg='white')
+    Button_remainder.configure(bg="black", fg='white')
+    Button_power.configure(bg="black", fg='white')
+    Button_point.configure(bg="black", fg='white')
+    Button_clear.configure(bg="black", fg='white')
+    darkmode.configure(bg="black", fg='white')
+    lightmode.configure(bg="black", fg='white')
+    e.configure(bg="black", fg='white')
+    menubar.configure(bg="black", fg='white')
+      
 def light_mode():
     root.configure(bg=orig_color)
+    Button_0.configure(bg=orig_color, fg="black")  
+    Button_1.configure(bg=orig_color, fg="black")
+    Button_2.configure(bg=orig_color, fg="black")
+    Button_3.configure(bg=orig_color, fg="black")
+    Button_4.configure(bg=orig_color, fg="black")
+    Button_5.configure(bg=orig_color, fg="black")
+    Button_6.configure(bg=orig_color, fg="black")
+    Button_7.configure(bg=orig_color, fg="black")
+    Button_8.configure(bg=orig_color, fg="black")
+    Button_9.configure(bg=orig_color, fg="black")
+    Button_add.configure(bg=orig_color, fg="black")
+    Button_subtract.configure(bg=orig_color, fg="black")
+    Button_divide.configure(bg=orig_color, fg="black")
+    Button_multiply.configure(bg=orig_color, fg="black")
+    Button_open_paranthesis.configure(bg=orig_color, fg="black")
+    Button_close_paranthesis.configure(bg=orig_color, fg="black")
+    Button_equal.configure(bg=orig_color, fg="black")
+    Button_exit.configure(bg=orig_color, fg="black")
+    Button_pi.configure(bg=orig_color, fg="black")
+    Button_sqr.configure(bg=orig_color, fg="black")
+    Button_sqrt.configure(bg=orig_color, fg="black")
+    Button_remainder.configure(bg=orig_color, fg="black")
+    Button_power.configure(bg=orig_color, fg="black")
+    Button_point.configure(bg=orig_color, fg="black")
+    Button_clear.configure(bg=orig_color, fg="black")
+    darkmode.configure(bg=orig_color, fg="black")
+    lightmode.configure(bg=orig_color, fg="black")
+    e.configure(bg=orig_color, fg="black")
+    menubar.configure(bg=orig_color, fg="black")
 
-darkmode = Button(root, text="dark mode", command=dark_mode).grid(row=0, column=2)
-lightmode = Button(root, text="light mode", command=light_mode).grid(row=0, column=1)
-
-# mylabel1 = Label(root, text= "Welcome!")
-# mylabel1.grid(row=0, column=0, columnspan=1, padx=40, pady=20)
-
-#
-# options = [
-#     "Basic", 
-#     "Advanced", 
-#     "In Progress", 
-#     "In Progress", 
-#     "In Progress",
-#     "In Progress"
-# ]   
-# clicked = StringVar()
-# clicked.set(options[0])
-# drop = OptionMenu(root, clicked, *options)
-# drop.grid(row=0, column=0)
+darkmode = Button(root, text="dark mode", command=dark_mode)
+darkmode.grid(row=0, column=2)
+lightmode = Button(root, text="light mode", command=light_mode)
+lightmode.grid(row=0, column=1)
 
 
   ### Define our buttons
