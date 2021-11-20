@@ -16,6 +16,7 @@ e = Entry(root, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
 
 
+
 # mylabel1 = Label(root, text= "Welcome!")
 # mylabel1.grid(row=0, column=0, columnspan=1, padx=40, pady=20)
 
@@ -100,6 +101,7 @@ def button_click(number):
    check_rem = "mylabel_rem" in globals()
    check_pow = "mylabel_pow" in globals()
    check_sqr = "mylabel_sqr" in globals()
+   check_sqrt = "mylabel_sqrt" in globals()
 
    if check_add == True:
         mylabel_add.destroy()
@@ -128,6 +130,9 @@ def button_click(number):
 
    if check_pi == True:
         mylabel_pi.destroy()
+
+   if check_sqrt == True:
+        mylabel_sqrt.destroy()
     
 
 def button_clear():
@@ -136,24 +141,24 @@ def button_clear():
 def button_add():
     first_number = e.get()
     global f_num
-    global math
-    math = "+"
+    global op
+    op = "+"
     f_num = float(first_number)
     e.delete(0, END)
 
 def button_subtract():
     first_number = e.get()
     global f_num
-    global math
-    math = "-"
+    global op
+    op = "-"
     f_num = float(first_number)
     e.delete(0, END)
 
 def button_multiply():
     first_number = e.get()
     global f_num
-    global math
-    math = "*"
+    global op
+    op = "*"
     f_num = float(first_number)
     e.delete(0, END)
 
@@ -161,40 +166,49 @@ def button_multiply():
 def button_divide():
     first_number = e.get()
     global f_num
-    global math
-    math = "/"
+    global op
+    op = "/"
     f_num = float(first_number)
     e.delete(0, END)
 
 def button_rem():
     first_number = e.get()
     global f_num
-    global math
-    math = "%"
+    global op
+    op = "%"
     f_num = float(first_number)
     e.delete(0, END)
 
 def button_pow():
     first_number = e.get()
     global f_num
-    global math
-    math = "**"
+    global op
+    op = "**"
     f_num = float(first_number)
     e.delete(0, END)
 
 def button_sqr():
     first_number = e.get()
     global f_num
-    global math
-    math = "sqr"
+    global op
+    op = "sqr"
     f_num = float(first_number)
     e.delete(0, END)
 
 def button_pi():
     first_number = e.get()
     global f_num
-    global math
-    math = "pi"
+    global op
+    op = "pi"
+    f_num = float(first_number)
+    e.delete(0, END)
+
+def button_sqrt():
+    first_number = e.get()
+    global f_num
+    global op
+    global a 
+    op = "sqrt"
     f_num = float(first_number)
     e.delete(0, END)
    
@@ -204,58 +218,63 @@ def button_equal():
     global myerrorlabel
 
     try:
-        if math == 'sqr':
+        if op == 'sqr':
             second_number = f_num
 
-        if math == 'pi':
+        elif op == 'pi':
             second_number = '3.141592653589793'
+
+        elif op == 'sqrt':
+            second_number = f_num
 
         else:
             second_number = float(e.get())
             e.delete(0, END)
 
 
-        if math == "+":
+        if op == "+":
             e.insert(0, f_num + float(second_number))
             whatfunction_add()
 
 
-        if math == "-":
+        if op == "-":
             e.insert(0, f_num - float(second_number))
             whatfunction_sub()
 
 
-        if math == "*":
+        if op == "*":
             e.insert(0, f_num * float(second_number))
             whatfunction_mult()
 
 
-        if math == "/":
+        if op == "/":
             e.insert(0, f_num / float(second_number))
             whatfunction_div()
 
 
 
-        if math == "%":
+        if op == "%":
             e.insert(0, f_num % float(second_number))
             whatfunction_rem()
 
 
 
-        if math == "**":
+        if op == "**":
             e.insert(0, f_num ** float(second_number))
             whatfunction_pow()
 
 
-        if math == "sqr":
+        if op == "sqr":
             e.insert(0, f_num * f_num)
             whatfunction_sqr()
 
-        if math == 'pi':
+        if op == 'pi':
             e.insert(0, f_num * 3.141592653589793)
             whatfunction_pi()
 
-            
+        if op == 'sqrt':
+            e.insert(0, f_num ** 0.5)
+            whatfunction_sqrt()
 
     except NameError:
         error = messagebox.askokcancel("Name Error ", "Please Enter an valid expression")
@@ -264,13 +283,10 @@ def button_equal():
         else:
             root.quit()
 
-        # messagebox.showerror("Name Error ", "Please Enter an valid expression")
-        # myerrorlabel = Label(root, text= "Error! Enter a valid exression! ")
-        # myerrorlabel.grid(row=0, column=5)
 
   ## Make our labels 
 def whatfunction_add():
-    if math == "+":
+    if op == "+":
         global mylabel_add
         mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number))
         mylabel_add.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
@@ -278,47 +294,52 @@ def whatfunction_add():
 
 def whatfunction_sub():
     global mylabel_sub
-    if math == "-":
+    if op == "-":
         mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number))
         mylabel_sub.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
 
 
 def whatfunction_mult():
     global mylabel_mult
-    if math == "*":
+    if op == "*":
         mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number))
         mylabel_mult.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_div():
     global mylabel_div
-    if math == "/":
+    if op == "/":
         mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number))
         mylabel_div.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_rem():
     global mylabel_rem
-    if math == "%":
+    if op == "%":
         mylabel_rem = Label(root, text= str(f_num ) + " " + "%" + " " + str(second_number))
         mylabel_rem.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_pow():
     global mylabel_pow
-    if math == "**":
+    if op == "**":
         mylabel_pow = Label(root, text= str(f_num ) + " " + "**" + " " + str(second_number))
         mylabel_pow.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_sqr():
     global mylabel_sqr
-    if math == "sqr":
+    if op == "sqr":
         mylabel_sqr = Label(root, text= str(f_num ) + " square")
         mylabel_sqr.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_pi():
     global mylabel_pi
-    if math == "pi":
+    if op == "pi":
         mylabel_pi = Label(root, text= str(f_num ) + " pi")
         mylabel_pi.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
   
+def whatfunction_sqrt():
+    global mylabel_sqrt
+    if op == "sqrt":
+        mylabel_sqrt = Label(root, text= str(f_num ) + " sqrt")
+        mylabel_sqrt.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
 
 
 # Define buttons
@@ -346,6 +367,8 @@ Button_remainder = Button(root, text="%", padx=35, pady=20, command=button_rem)
 Button_power = Button(root, text="pow", padx=30, pady=20, command=button_pow)
 Button_sqr = Button(root, text="sqr", padx=30, pady=20, command=button_sqr)
 Button_pi = Button(root, text="pi", padx=30, pady=20, command=button_pi)
+Button_sqrt = Button(root, text="sqrt", padx=30, pady=20, command=button_sqrt)
+
 
 Button_exit = Button(root, text="Exit", padx=30, pady=20, command=button_exit)
 
@@ -364,7 +387,7 @@ Button_9.grid(row=2, column=2)
 
 Button_0.grid(row=5, column=0)
 Button_point.grid(row=5, column=1)
-Button_remainder.grid(row=3, column=4)
+
 
 
 Button_add.grid(row=2, column=3)
@@ -372,10 +395,12 @@ Button_subtract.grid(row=3, column=3)
 Button_multiply.grid(row=4, column=3)
 Button_divide.grid(row=5, column=3)
 
-
+Button_remainder.grid(row=3, column=4)
 Button_power.grid(row=2, column=4, columnspan=1)
 Button_sqr.grid(row=4, column=4, columnspan=1)
 Button_pi.grid(row=5, column=4, columnspan=1)
+Button_sqrt.grid(row=6, column=4, columnspan=1)
+
 
 
 Button_clear.grid(row=5, column=2, columnspan=1)
