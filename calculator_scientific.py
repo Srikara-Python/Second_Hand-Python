@@ -102,9 +102,7 @@ def about_menu():
     about.geometry("320x280+0+0")
     label1 = Label(about, text="Developed By Srikara under open source licence").grid(row=0, column=1)
     label2 = Label(about, text="Date:- 19.11.2021").grid(row=1, column=1)
-    label3 = Label(about, text="Made in Python using tkinter module").grid(row=2, column=1)
-    
-    
+    label3 = Label(about, text="Made in Python using tkinter module").grid(row=2, column=1)  
     
 def Scientific():
     root.resizable(width=False, height=False)
