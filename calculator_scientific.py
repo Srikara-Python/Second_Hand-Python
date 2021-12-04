@@ -8,7 +8,7 @@ import math
 
 root = Tk()
 root.title("Sceintific Calculator")
-root.geometry("380x450+0+0")
+##root.geometry("600x450+0+0")
 root.resizable(False, False)
 root.eval('tk::PlaceWindow . center')
 orig_color = root.cget("background")
@@ -24,11 +24,6 @@ tabControl.add(tab2, text ='Scientific')
 
 tabControl.grid(row=0, column=0)
   
-a = tabControl.index("current")
-
-print(a)
-
-
 
 def new_win():
     top = Toplevel()
@@ -37,8 +32,11 @@ def new_win():
     tell.pack()
     thankyou.pack()
 
-open_button = Button(root, text="Click Me!", command=new_win, padx=5, pady=5)
+open_button = Button(tab1, text="Click Me!", command=new_win, padx=5, pady=5)
 open_button.grid(row=0, column=3)
+open_button_ = Button(tab2, text="Click Me!", command=new_win, padx=5, pady=5)
+open_button_.grid(row=0, column=3)
+
 
 e = Entry(tab1, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
@@ -399,7 +397,7 @@ def button_subtract_():
     global op
     op = "-"
     f_num = float(first_number)
-    e_.de_lete(0, END)
+    e_.delete(0, END)
 
 def button_multiply_():
     first_number = e_.get()
@@ -581,7 +579,7 @@ def button_equal_():
             second_number = f_num
 
         else:
-            second_number = float(e.get())
+            second_number = float(e_.get())
             e_.delete(0, END)
 
 
@@ -811,7 +809,7 @@ Button_open_paranthesis.grid(row=6, column=0)
 Button_close_paranthesis.grid(row=6, column=2)
 
 
-Button_exit.grid(row=1, column=3)
+Button_exit.grid(row=6, column=3)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -852,7 +850,7 @@ Button_open_paranthesis_.grid(row=6, column=0)
 Button_close_paranthesis_.grid(row=6, column=2)
 
 
-Button_exit_.grid(row=1, column=3)
+Button_exit_.grid(row=6, column=3)
 
 
 
