@@ -5,6 +5,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import math
+from turtle import bgcolor
 
 root = Tk()
 root.title("Sceintific Calculator")
@@ -15,9 +16,14 @@ orig_color = root.cget("background")
 root.configure(bg=orig_color)
 
 tabControl = ttk.Notebook(root)
-  
+
 tab1 = ttk.Frame(tabControl)
 tab2 = ttk.Frame(tabControl)
+
+ttk.Style().configure("TNotebook", background='black');
+ttk.Style().configure('tab1', background='black');
+ttk.Style().configure('ttk.Frame', background='green');
+
 
 tabControl.add(tab1, text ='Standard')
 tabControl.add(tab2, text ='Scientific')
@@ -45,6 +51,7 @@ e_.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
 
 def dark_mode():
     root.configure(bg='black')
+ 
     Button_0.configure(bg="black", fg='white')  
     Button_1.configure(bg="black", fg='white')
     Button_2.configure(bg="black", fg='white')
@@ -63,16 +70,16 @@ def dark_mode():
     Button_close_paranthesis.configure(bg="black", fg='white')
     Button_equal.configure(bg="black", fg='white')
     Button_exit.configure(bg="black", fg='white')
-    Button_pi.configure(bg="black", fg='white')
-    Button_sqr.configure(bg="black", fg='white')
-    Button_sqrt.configure(bg="black", fg='white')
-    Button_remainder.configure(bg="black", fg='white')
-    Button_power.configure(bg="black", fg='white')
+    Button_pi_.configure(bg="black", fg='white')
+    Button_sqr_.configure(bg="black", fg='white')
+    Button_sqrt_.configure(bg="black", fg='white')
+    Button_remainder_.configure(bg="black", fg='white')
+    Button_power_.configure(bg="black", fg='white')
     Button_point.configure(bg="black", fg='white')
     Button_clear.configure(bg="black", fg='white')
-    Button_fact.configure(bg="black", fg='white')
+    Button_fact_.configure(bg="black", fg='white')
     aboutmenu.configure(bg="black", fg="white")
-    filemenu.configure(bg="black", fg="white")
+    # filemenu.configure(bg="black", fg="white")
     settingsmenu.configure(bg="black", fg="white")
     editmenu.configure(bg="black", fg="white")
     open_button.configure(bg="black", fg="white")
@@ -101,18 +108,18 @@ def light_mode():
     Button_close_paranthesis.configure(bg=orig_color, fg="black")
     Button_equal.configure(bg=orig_color, fg="black")
     Button_exit.configure(bg=orig_color, fg="black")
-    Button_pi.configure(bg=orig_color, fg="black")
-    Button_sqr.configure(bg=orig_color, fg="black")
-    Button_sqrt.configure(bg=orig_color, fg="black")
-    Button_remainder.configure(bg=orig_color, fg="black")
-    Button_power.configure(bg=orig_color, fg="black")
+    Button_pi_.configure(bg=orig_color, fg="black")
+    Button_sqr_.configure(bg=orig_color, fg="black")
+    Button_sqrt_.configure(bg=orig_color, fg="black")
+    Button_remainder_.configure(bg=orig_color, fg="black")
+    Button_power_.configure(bg=orig_color, fg="black")
     Button_point.configure(bg=orig_color, fg="black")
     Button_clear.configure(bg=orig_color, fg="black")
-    Button_fact.configure(bg=orig_color, fg="black")
+    Button_fact_.configure(bg=orig_color, fg="black")
     settingsmenu.configure(bg=orig_color, fg="black")
     aboutmenu.configure(bg=orig_color, fg="black")
     editmenu.configure(bg=orig_color, fg="black")
-    filemenu.configure(bg=orig_color, fg="black")
+    # filemenu.configure(bg=orig_color, fg="black")
     open_button.configure(bg=orig_color, fg="black")
     # darkmode.configure(bg=orig_color, fg="black")
     # lightmode.configure(bg=orig_color, fg="black")
