@@ -304,13 +304,6 @@ def button_add():
     op = "+"
     f_num = float(first_number)
     e.delete(0, END)
-def button_add_():
-    first_number = e_.get()
-    global f_num
-    global op
-    op = "+"
-    f_num = float(first_number)
-    e_.delete(0, END)
 
 def button_subtract():
     first_number = e.get()
@@ -340,6 +333,15 @@ def button_divide():
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+def button_add_():
+    first_number = e_.get()
+    global f_num
+    global op
+    op = "+"
+    f_num = float(first_number)
+    e_.delete(0, END)
+
+
 def button_subtract_():
     first_number = e_.get()
     global f_num
@@ -425,46 +427,32 @@ def button_equal():
     global myerrorlabel
 
     try:
-        if op == 'sqr':
-            second_number = f_num
 
-        elif op == 'pi':
-            second_number = '3.141592653589793'
-
-        elif op == 'sqrt':
-            second_number = f_num
-            
-        elif op == 'fact':
-            second_number = f_num
-
-        else:
-            second_number = float(e.get())
-            e.delete(0, END)
+        second_number = float(e.get())
+        e.delete(0, END)
 
 
         if op == "+":
             e.insert(0, f_num + float(second_number))
             whatfunction_add()
-            whatfunction_add_()
+         
 
 
         if op == "-":
             e.insert(0, f_num - float(second_number))
             whatfunction_sub()
-            whatfunction_sub_()
+
 
         if op == "*":
             e.insert(0, f_num * float(second_number))
             whatfunction_mult()
-            whatfunction_mult_()
+         
 
 
         if op == "/":
             e.insert(0, f_num / float(second_number))
             whatfunction_div()
-            whatfunction_div_()
-
-
+           
     except NameError:
         error = messagebox.askokcancel("Name Error ", "Please Enter an valid expression")
         if error == True:
@@ -513,27 +501,18 @@ def button_equal_():
         if op == "+":
             e_.insert(0, f_num + float(second_number))
             whatfunction_add()
-            whatfunction_add_
-
 
         if op == "-":
             e_.insert(0, f_num - float(second_number))
             whatfunction_sub()
-            whatfunction_sub_()
-
 
         if op == "*":
             e_.insert(0, f_num * float(second_number))
             whatfunction_mult()
-            whatfunction_mult_()
-
 
         if op == "/":
             e_.insert(0, f_num / float(second_number))
             whatfunction_div()
-            whatfunction_div_()
-
-
 
         if op == "%":
             e_.insert(0, f_num % float(second_number))
@@ -612,31 +591,6 @@ def whatfunction_div():
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-def whatfunction_add_():
-    if op == "+":
-        global mylabel_add
-        mylabel_add_ = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number))
-        mylabel_add_.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
-
-
-def whatfunction_sub_():
-    global mylabel_sub
-    if op == "-":
-        mylabel_sub_ = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number))
-        mylabel_sub_.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
-
-
-def whatfunction_mult_():
-    global mylabel_mult
-    if op == "*":
-        mylabel_mult_ = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number))
-        mylabel_mult_.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
-
-def whatfunction_div_():
-    global mylabel_div
-    if op == "/":
-        mylabel_div_ = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number))
-        mylabel_div_.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 def whatfunction_rem():
     global mylabel_rem
     if op == "%":
@@ -675,8 +629,6 @@ def whatfunction_fact():
 
 
 # Define buttons
-#def standard():
-
 
 Button_1 = Button(tab1, text="1", padx=40, pady=20, command=lambda: button_click(1))
 Button_2 = Button(tab1, text="2", padx=40, pady=20, command=lambda: button_click(2))
