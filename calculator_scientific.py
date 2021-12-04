@@ -15,10 +15,14 @@ root.eval('tk::PlaceWindow . center')
 orig_color = root.cget("background")
 root.configure(bg=orig_color)
 
+
+
+s = ttk.Style()
+s.configure('My.TFrame', background='black')
 tabControl = ttk.Notebook(root)
 
-tab1 = ttk.Frame(tabControl)
-tab2 = ttk.Frame(tabControl)
+tab1 = ttk.Frame(tabControl, style='My.TFrame')
+tab2 = ttk.Frame(tabControl, style='My.TFrame')
 
 ttk.Style().configure("TNotebook", background='black');
 ttk.Style().configure('tab1', background='black');
@@ -40,7 +44,7 @@ def new_win():
 
 open_button = Button(tab1, text="Click Me!", command=new_win, padx=5, pady=5)
 open_button.grid(row=0, column=3)
-open_button_ = Button(tab2, text="Click Me!", command=new_win, padx=5, pady=5)
+open_button_ = Button(tab2, text="Click Me!", command=new_win, padx=5, pady=5, bg='black', fg='white')
 open_button_.grid(row=0, column=3)
 
 
@@ -49,9 +53,21 @@ e.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
 e_ = Entry(tab2, width=35, borderwidth=5)
 e_.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
 
+e.configure(bg="black", fg='white')
+e_.configure(bg="black", fg='white')
+
+
 def dark_mode():
     root.configure(bg='black')
- 
+    e.configure(bg="black", fg='white')
+    e_.configure(bg="black", fg='white')
+    menubar.configure(bg='black', fg="white")
+    aboutmenu.configure(bg="black", fg="white")
+    settingsmenu.configure(bg="black", fg="white")
+    editmenu.configure(bg="black", fg="white")
+
+    open_button_.configure(bg="black", fg='white')  
+    open_button.configure(bg="black", fg='white')  
     Button_0.configure(bg="black", fg='white')  
     Button_1.configure(bg="black", fg='white')
     Button_2.configure(bg="black", fg='white')
@@ -78,15 +94,28 @@ def dark_mode():
     Button_point.configure(bg="black", fg='white')
     Button_clear.configure(bg="black", fg='white')
     Button_fact_.configure(bg="black", fg='white')
-    aboutmenu.configure(bg="black", fg="white")
-    # filemenu.configure(bg="black", fg="white")
-    settingsmenu.configure(bg="black", fg="white")
-    editmenu.configure(bg="black", fg="white")
-    open_button.configure(bg="black", fg="white")
-    # darkmode.configure(bg="black", fg='white')
-    # lightmode.configure(bg="black", fg='white')
-    e.configure(bg="black", fg='white')
-    menubar.configure(bg="black", fg='white')
+
+
+    Button_0_.configure(bg="black", fg='white')  
+    Button_1_.configure(bg="black", fg='white')
+    Button_2_.configure(bg="black", fg='white')
+    Button_3_.configure(bg="black", fg='white')
+    Button_4_.configure(bg="black", fg='white')
+    Button_5_.configure(bg="black", fg='white')
+    Button_6_.configure(bg="black", fg='white')
+    Button_7_.configure(bg="black", fg='white')
+    Button_8_.configure(bg="black", fg='white')
+    Button_9_.configure(bg="black", fg='white')
+    Button_add_.configure(bg="black", fg='white')
+    Button_subtract_.configure(bg="black", fg='white')
+    Button_divide_.configure(bg="black", fg='white')
+    Button_multiply_.configure(bg="black", fg='white')
+    Button_open_paranthesis_.configure(bg="black", fg='white')
+    Button_close_paranthesis_.configure(bg="black", fg='white')
+    Button_equal_.configure(bg="black", fg='white')
+    Button_exit_.configure(bg="black", fg='white')
+
+
       
 def light_mode():
     root.configure(bg=orig_color)
@@ -126,15 +155,6 @@ def light_mode():
     e.configure(bg=orig_color, fg="black")
     menubar.configure(bg=orig_color, fg="black")
 
-
-# darkmode = Button(root, text="dark mode", command=dark_mode)
-# darkmode.grid(row=0, column=3)
-# lightmode = Button(root, text="light mode", command=light_mode)
-# lightmode.grid(row=0, column=2)
-
-
-  ### Define our buttons
-  
 def button_exit():
     root.quit()
 
@@ -192,6 +212,12 @@ settingsmenu.add_command(label = "Light Theme", command = light_mode)
 settingsmenu.add_command(label = "Dark Theme", command = dark_mode)
 
 root.config(menu=menubar)
+menubar.configure(bg="black", fg='white')
+aboutmenu.configure(bg="black", fg="white")
+# filemenu.configure(bg="black", fg="white")
+settingsmenu.configure(bg="black", fg="white")
+editmenu.configure(bg="black", fg="white")
+open_button.configure(bg="black", fg="white")
 
 def button_click(number):
    current = e.get()
@@ -769,7 +795,62 @@ Button_close_paranthesis_.grid(row=6, column=2)
 
 Button_exit_.grid(row=6, column=3)
 
+Button_0.configure(bg="black", fg='white')  
+Button_1.configure(bg="black", fg='white')
+Button_2.configure(bg="black", fg='white')
+Button_3.configure(bg="black", fg='white')
+Button_4.configure(bg="black", fg='white')
+Button_5.configure(bg="black", fg='white')
+Button_6.configure(bg="black", fg='white')
+Button_7.configure(bg="black", fg='white')
+Button_8.configure(bg="black", fg='white')
+Button_9.configure(bg="black", fg='white')
+Button_add.configure(bg="black", fg='white')
+Button_subtract.configure(bg="black", fg='white')
+Button_divide.configure(bg="black", fg='white')
+Button_multiply.configure(bg="black", fg='white')
+Button_open_paranthesis.configure(bg="black", fg='white')
+Button_close_paranthesis.configure(bg="black", fg='white')
+Button_equal.configure(bg="black", fg='white')
+Button_exit.configure(bg="black", fg='white')
+Button_pi_.configure(bg="black", fg='white')
+Button_sqr_.configure(bg="black", fg='white')
+Button_sqrt_.configure(bg="black", fg='white')
+Button_remainder_.configure(bg="black", fg='white')
+Button_power_.configure(bg="black", fg='white')
+Button_point.configure(bg="black", fg='white')
+Button_clear.configure(bg="black", fg='white')
+Button_fact_.configure(bg="black", fg='white')
 
+
+
+
+Button_0_.configure(bg="black", fg='white')  
+Button_1_.configure(bg="black", fg='white')
+Button_2_.configure(bg="black", fg='white')
+Button_3_.configure(bg="black", fg='white')
+Button_4_.configure(bg="black", fg='white')
+Button_5_.configure(bg="black", fg='white')
+Button_6_.configure(bg="black", fg='white')
+Button_7_.configure(bg="black", fg='white')
+Button_8_.configure(bg="black", fg='white')
+Button_9_.configure(bg="black", fg='white')
+Button_add_.configure(bg="black", fg='white')
+Button_subtract_.configure(bg="black", fg='white')
+Button_divide_.configure(bg="black", fg='white')
+Button_multiply_.configure(bg="black", fg='white')
+Button_open_paranthesis_.configure(bg="black", fg='white')
+Button_close_paranthesis_.configure(bg="black", fg='white')
+Button_equal_.configure(bg="black", fg='white')
+Button_exit_.configure(bg="black", fg='white')
+Button_pi_.configure(bg="black", fg='white')
+Button_sqr_.configure(bg="black", fg='white')
+Button_sqrt_.configure(bg="black", fg='white')
+Button_remainder_.configure(bg="black", fg='white')
+Button_power_.configure(bg="black", fg='white')
+Button_point_.configure(bg="black", fg='white')
+Button_clear_.configure(bg="black", fg='white')
+Button_fact_.configure(bg="black", fg='white')
 
 # Create a main loop
 root.mainloop()
