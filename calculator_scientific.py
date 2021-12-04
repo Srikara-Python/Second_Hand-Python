@@ -156,12 +156,12 @@ def Standard():
 menubar = Menu(root)
 
 # ManuBar 1 :
-filemenu = Menu(menubar, tearoff = 0)
-menubar.add_cascade(label = 'Mode', menu = filemenu)
-filemenu.add_command(label = "Standard", command = Standard)
-filemenu.add_command(label = "Scientific", command = Scientific)
-filemenu.add_separator()
-filemenu.add_command(label = "Exit", command = button_exit)
+# filemenu = Menu(menubar, tearoff = 0)
+# menubar.add_cascade(label = 'Mode', menu = filemenu)
+# filemenu.add_command(label = "Standard", command = Standard)
+# filemenu.add_command(label = "Scientific", command = Scientific)
+# filemenu.add_separator()
+# filemenu.add_command(label = "Exit", command = button_exit)
     
 
 editmenu = Menu(menubar, tearoff = 0)
@@ -213,16 +213,16 @@ def button_click(number):
    if check_mult == True:
         mylabel_mult.destroy()
 
-   if check_div== True:
+   if check_div == True:
         mylabel_div.destroy()
 
-   if check_rem== True:
+   if check_rem == True:
         mylabel_rem.destroy()
 
-   if check_pow== True:
+   if check_pow == True:
         mylabel_pow.destroy()
 
-   if check_sqr== True:
+   if check_sqr == True:
         mylabel_sqr.destroy()
 
    
@@ -267,16 +267,16 @@ def button_click_(number):
    if check_mult == True:
         mylabel_mult.destroy()
 
-   if check_div== True:
+   if check_div == True:
         mylabel_div.destroy()
 
-   if check_rem== True:
+   if check_rem == True:
         mylabel_rem.destroy()
 
-   if check_pow== True:
+   if check_pow == True:
         mylabel_pow.destroy()
 
-   if check_sqr== True:
+   if check_sqr == True:
         mylabel_sqr.destroy()
 
    
@@ -337,58 +337,7 @@ def button_divide():
     f_num = float(first_number)
     e.delete(0, END)
 
-def button_rem():
-    first_number = e.get()
-    global f_num
-    global op
-    op = "%"
-    f_num = float(first_number)
-    e.delete(0, END)
 
-
-def button_sqr():
-    first_number = e.get()
-    global f_num
-    global op
-    op = "sqr"
-    f_num = float(first_number)
-
-def button_pi():
-    first_number = e.get()
-    global f_num
-    global op
-    op = "pi"
-    f_num = float(first_number)
-    e.delete(0, END)
-    
-def button_sqrt():
-    first_number = e.get()
-    global f_num
-    global op
-    global a 
-    op = "sqrt"
-    f_num = float(first_number)
-    e.delete(0, END)
-
-def button_pow():
-    first_number = e.get()
-    global f_num
-    global op
-    global a 
-    global powering
-    op = "**"
-    f_num = float(first_number)
-    e.delete(0, END)
-
-def button_factorial():
-    first_number = e.get()
-    global f_num
-    global op
-    global a 
-    global powering
-    op = "fact"
-    f_num = float(first_number)
-    e.delete(0, END)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 def button_subtract_():
@@ -431,6 +380,7 @@ def button_sqr_():
     global op
     op = "sqr"
     f_num = float(first_number)
+    e_.delete(0, END)
 
 def button_pi_():
     first_number = e_.get()
@@ -495,48 +445,25 @@ def button_equal():
         if op == "+":
             e.insert(0, f_num + float(second_number))
             whatfunction_add()
+            whatfunction_add_()
 
 
         if op == "-":
             e.insert(0, f_num - float(second_number))
             whatfunction_sub()
-
+            whatfunction_sub_()
 
         if op == "*":
             e.insert(0, f_num * float(second_number))
             whatfunction_mult()
+            whatfunction_mult_()
 
 
         if op == "/":
             e.insert(0, f_num / float(second_number))
             whatfunction_div()
+            whatfunction_div_()
 
-
-
-        if op == "%":
-            e.insert(0, f_num % float(second_number))
-            whatfunction_rem()
-
-        if op == "**":
-            e.insert(0, math.pow(f_num, second_number))
-            whatfunction_pow()
-
-
-        if op == "sqr":
-            e.insert(0, f_num * f_num)
-            whatfunction_sqr()
-
-        if op == 'pi':
-            e.insert(0, f_num * 3.141592653589793)
-            whatfunction_pi()
-      
-        if op == 'sqrt':
-            e.insert(0, math.sqrt(f_num))
-            whatfunction_sqrt()
-            
-        if op == 'fact':
-            e.insert(0, math.factorial(f_num))
-            whatfunction_fact()
 
     except NameError:
         error = messagebox.askokcancel("Name Error ", "Please Enter an valid expression")
@@ -586,21 +513,25 @@ def button_equal_():
         if op == "+":
             e_.insert(0, f_num + float(second_number))
             whatfunction_add()
+            whatfunction_add_
 
 
         if op == "-":
             e_.insert(0, f_num - float(second_number))
             whatfunction_sub()
+            whatfunction_sub_()
 
 
         if op == "*":
             e_.insert(0, f_num * float(second_number))
             whatfunction_mult()
+            whatfunction_mult_()
 
 
         if op == "/":
             e_.insert(0, f_num / float(second_number))
             whatfunction_div()
+            whatfunction_div_()
 
 
 
@@ -657,63 +588,90 @@ def whatfunction_add():
     if op == "+":
         global mylabel_add
         mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number))
-        mylabel_add.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+        mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 
 def whatfunction_sub():
     global mylabel_sub
     if op == "-":
         mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number))
-        mylabel_sub.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+        mylabel_sub.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 
 def whatfunction_mult():
     global mylabel_mult
     if op == "*":
         mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number))
-        mylabel_mult.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+        mylabel_mult.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_div():
     global mylabel_div
     if op == "/":
         mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number))
-        mylabel_div.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+        mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def whatfunction_add_():
+    if op == "+":
+        global mylabel_add
+        mylabel_add_ = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number))
+        mylabel_add_.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+
+
+def whatfunction_sub_():
+    global mylabel_sub
+    if op == "-":
+        mylabel_sub_ = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number))
+        mylabel_sub_.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+
+
+def whatfunction_mult_():
+    global mylabel_mult
+    if op == "*":
+        mylabel_mult_ = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number))
+        mylabel_mult_.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+
+def whatfunction_div_():
+    global mylabel_div
+    if op == "/":
+        mylabel_div_ = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number))
+        mylabel_div_.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 def whatfunction_rem():
     global mylabel_rem
     if op == "%":
         mylabel_rem = Label(root, text= str(f_num ) + " " + "%" + " " + str(second_number))
-        mylabel_rem.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+        mylabel_rem.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_pow():
     global mylabel_pow
     if op == "**":
         mylabel_pow = Label(root, text= str(f_num ) + " " + "**" + " " + str(second_number))
-        mylabel_pow.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+        mylabel_pow.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_sqr():
     global mylabel_sqr
     if op == "sqr":
         mylabel_sqr = Label(root, text= str(f_num ) + " square")
-        mylabel_sqr.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+        mylabel_sqr.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_pi():
     global mylabel_pi
     if op == "pi":
         mylabel_pi = Label(root, text= str(f_num ) + " pi")
-        mylabel_pi.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+        mylabel_pi.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
   
 def whatfunction_sqrt():
     global mylabel_sqrt
     if op == "sqrt":
         mylabel_sqrt = Label(root, text= str(f_num ) + " sqrt")
-        mylabel_sqrt.grid(row=0, column=0, columnspan=2, padx=40, pady=3)
+        mylabel_sqrt.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
         
 def whatfunction_fact():
     global mylabel_fact
     if op == "fact":
         mylabel_fact = Label(root, text= str(f_num ) + " factorial")
-        mylabel_fact.grid(row=0, column=0, columnspan=2, padx=40, pady=3)      
+        mylabel_fact.grid(row=2, column=0, columnspan=2, padx=40, pady=3)      
 
 
 # Define buttons
