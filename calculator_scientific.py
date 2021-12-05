@@ -5,7 +5,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import math
-from turtle import bgcolor
+
 
 root = Tk()
 root.title("Sceintific Calculator")
@@ -13,7 +13,7 @@ root.title("Sceintific Calculator")
 root.resizable(False, False)
 root.eval('tk::PlaceWindow . center')
 orig_color = root.cget("background")
-root.configure(bg=orig_color)
+root.configure(bg='black')
 
 
 
@@ -123,9 +123,10 @@ def dark_mode():
 
       
 def light_mode():
+    # mylabel_add.configure(bg=orig_color, fg='black')
     ttk.Style().configure("TNotebook", background=orig_color);
     s1.configure('My.TFrame', background=orig_color)
-    root.configure(bg=orig_color)
+    # root.configure(bg=orig_color)
     e.configure(bg=orig_color, fg='black')
     e_.configure(bg=orig_color, fg='black')
     menubar.configure(bg=orig_color, fg="black")
@@ -630,27 +631,27 @@ def button_equal_():
 def whatfunction_add():
     if op == "+":
         global mylabel_add
-        mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number))
+        mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number), bg='black', fg=orig_color)
         mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 
 def whatfunction_sub():
     global mylabel_sub
     if op == "-":
-        mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number))
+        mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number), bg='black', fg=orig_color)
         mylabel_sub.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 
 def whatfunction_mult():
     global mylabel_mult
     if op == "*":
-        mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number))
+        mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number), bg='black', fg=orig_color)
         mylabel_mult.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_div():
     global mylabel_div
     if op == "/":
-        mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number))
+        mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number), bg='black', fg=orig_color)
         mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -658,37 +659,37 @@ def whatfunction_div():
 def whatfunction_rem():
     global mylabel_rem
     if op == "%":
-        mylabel_rem = Label(root, text= str(f_num ) + " " + "%" + " " + str(second_number))
+        mylabel_rem = Label(root, text= str(f_num ) + " " + "%" + " " + str(second_number), bg='black', fg=orig_color)
         mylabel_rem.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_pow():
     global mylabel_pow
     if op == "**":
-        mylabel_pow = Label(root, text= str(f_num ) + " " + "**" + " " + str(second_number))
+        mylabel_pow = Label(root, text= str(f_num ) + " " + "**" + " " + str(second_number), bg='black', fg=orig_color)
         mylabel_pow.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_sqr():
     global mylabel_sqr
     if op == "sqr":
-        mylabel_sqr = Label(root, text= str(f_num ) + " square")
+        mylabel_sqr = Label(root, text= str(f_num ) + " square", bg='black', fg=orig_color)
         mylabel_sqr.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_pi():
     global mylabel_pi
     if op == "pi":
-        mylabel_pi = Label(root, text= str(f_num ) + " pi")
-        mylabel_pi.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+        mylabel_pi = Label(root, text= str(f_num ) + " pi", bg='black', fg=orig_color)
+        mylabel_pi.grid(row=2, column=0, columnspan=2, padx=40, pady=3, bg='black', fg=orig_color)
   
 def whatfunction_sqrt():
     global mylabel_sqrt
     if op == "sqrt":
-        mylabel_sqrt = Label(root, text= str(f_num ) + " sqrt")
+        mylabel_sqrt = Label(root, text= str(f_num ) + " sqrt", bg='black', fg=orig_color)
         mylabel_sqrt.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
         
 def whatfunction_fact():
     global mylabel_fact
     if op == "fact":
-        mylabel_fact = Label(root, text= str(f_num ) + " factorial")
+        mylabel_fact = Label(root, text= str(f_num ) + " factorial", bg='black', fg=orig_color)
         mylabel_fact.grid(row=2, column=0, columnspan=2, padx=40, pady=3)      
 
 
