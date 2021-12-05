@@ -5,6 +5,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import math
+import new_win
 
 
 root = Tk()
@@ -36,16 +37,9 @@ tabControl.add(tab2, text ='Scientific')
 tabControl.grid(row=0, column=0)
   
 
-def new_win():
-    top = Toplevel()
-    tell = Label(top, text="Make sure you read our help, about and contribute sections")
-    thankyou = Label(top, text="Thankyou for using us , please do share and add suggetions to the link provided.")
-    tell.pack()
-    thankyou.pack()
-
-open_button = Button(tab1, text="Click!", command=new_win, padx=2, pady=2)
+open_button = Button(tab1, text="Click!", command=new_win.new_wind, padx=2, pady=2)
 open_button.grid(row=0, column=3)
-open_button_ = Button(tab2, text="Click!", command=new_win, padx=2, pady=2, bg='black', fg="white")
+open_button_ = Button(tab2, text="Click!", command=new_win.new_wind, padx=2, pady=2, bg='black', fg="white")
 open_button_.grid(row=0, column=3)
 
 
