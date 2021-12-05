@@ -16,8 +16,6 @@ root.eval('tk::PlaceWindow . center')
 orig_color = root.cget("background")
 root.configure(bg='black')
 
-
-
 s1 = ttk.Style()
 s1.configure('My.TFrame', background='black')
 
@@ -263,7 +261,6 @@ def Scientific():
     root.geometry("600x450+0+0")
     root.eval('tk::PlaceWindow . center')
 
-
 def Standard():
     root.resizable(width=False, height=False)
     root.geometry("380x450+0+0")
@@ -272,12 +269,9 @@ def Standard():
 menubar = Menu(root)
 
 # ManuBar 1 :
-# filemenu = Menu(menubar, tearoff = 0)
-# menubar.add_cascade(label = 'Mode', menu = filemenu)
-# filemenu.add_command(label = "Standard", command = Standard)
-# filemenu.add_command(label = "Scientific", command = Scientific)
-# filemenu.add_separator()
-# filemenu.add_command(label = "Exit", command = button_exit)
+filemenu = Menu(menubar, tearoff = 0)
+menubar.add_cascade(label = 'Mode', menu = filemenu)
+filemenu.add_command(label = "Exit", command = button_exit)
     
 
 editmenu = Menu(menubar, tearoff = 0)
