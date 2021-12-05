@@ -308,8 +308,6 @@ def button_click(number):
    e.delete(0, END)
    e.insert(0, str(current) + str(number))
 
-
-   check_error = "myerrorlabel" in globals()
    check_add = "mylabel_add" in globals()
    check_pi = "mylabel_pi" in globals()
    check_sub = "mylabel_sub" in globals()
@@ -341,10 +339,6 @@ def button_click(number):
 
    if check_sqr == True:
         mylabel_sqr.destroy()
-
-   
-   if check_error == True:
-        myerrorlabel.destroy()
 
    if check_pi == True:
         mylabel_pi.destroy()
@@ -362,8 +356,6 @@ def button_click_(number):
    e_.delete(0, END)
    e_.insert(0, str(current) + str(number))
 
-
-   check_error = "myerrorlabel" in globals()
    check_add = "mylabel_add" in globals()
    check_pi = "mylabel_pi" in globals()
    check_sub = "mylabel_sub" in globals()
@@ -395,10 +387,6 @@ def button_click_(number):
 
    if check_sqr == True:
         mylabel_sqr.destroy()
-
-   
-   if check_error == True:
-        myerrorlabel.destroy()
 
    if check_pi == True:
         mylabel_pi.destroy()
