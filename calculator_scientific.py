@@ -1,17 +1,14 @@
 """ Scientific Calculator made using tkinter module
 Free to copy and open-source """
 
-from optparse import OptParseError
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import math
 import new_win
 
-
 root = Tk()
 root.title("Sceintific Calculator")
-#root.geometry("600x450+0+0")
 root.resizable(False, False)
 root.eval('tk::PlaceWindow . center')
 orig_color = root.cget("background")
@@ -20,14 +17,12 @@ root.configure(bg='black')
 s1 = ttk.Style()
 s1.configure('My.TFrame', background='black')
 
-
 tabControl = ttk.Notebook(root)
 
 tab1 = ttk.Frame(tabControl, style='My.TFrame')
 tab2 = ttk.Frame(tabControl, style='My.TFrame')
 
 ttk.Style().configure("TNotebook", background='black');
-
 
 
 tabControl.add(tab1, text ='Standard')
@@ -178,13 +173,9 @@ def high_contrast_mode():
     Button_point_.configure(bg="grey", fg="white")
     Button_clear_.configure(bg="black", fg="white")
 
-
-      
 def light_mode():
-    # mylabel_add.configure(bg="white", fg='black')
     ttk.Style().configure("TNotebook", background="white");
     s1.configure('My.TFrame', background="white")
-    # root.configure(bg="white")
     e.configure(bg=orig_color, fg='black')
     e_.configure(bg=orig_color, fg='black')
     menubar.configure(bg="white", fg="black")
@@ -246,7 +237,6 @@ def light_mode():
     Button_clear_.configure(bg="white", fg="black")
 
 
-
 def button_exit():
     root.quit()
 
@@ -261,24 +251,13 @@ def about_menu():
     label3 = Label(about, text="Made in Python using tkinter module").grid(row=2, column=1)  
     root.eval(f'tk::PlaceWindow {str(about)} center')
     
-def Scientific():
-    root.resizable(width=False, height=False)
-    root.geometry("600x450+0+0")
-    root.eval('tk::PlaceWindow . center')
-
-def Standard():
-    root.resizable(width=False, height=False)
-    root.geometry("380x450+0+0")
-    root.eval('tk::PlaceWindow . center')
 
 menubar = Menu(root)
-
 # ManuBar 1 :
 filemenu = Menu(menubar, tearoff = 0)
 menubar.add_cascade(label = 'Mode', menu = filemenu)
 filemenu.add_command(label = "Exit", command = button_exit)
     
-
 editmenu = Menu(menubar, tearoff = 0)
 menubar.add_cascade(label = 'Edit', menu = editmenu)
 editmenu.add_command(label = "Cut")
@@ -303,7 +282,7 @@ settingsmenu.add_command(label = "High Contrast", command = high_contrast_mode)
 root.config(menu=menubar)
 menubar.configure(bg="black", fg="white")
 aboutmenu.configure(bg="black", fg="white")
-# filemenu.configure(bg="black", fg="white")
+
 settingsmenu.configure(bg="black", fg="white")
 editmenu.configure(bg="black", fg="white")
 open_button.configure(bg="black", fg="white")
@@ -312,6 +291,10 @@ def button_click(number):
    current = e.get()
    e.delete(0, END)
    e.insert(0, str(current) + str(number))
+
+   current = e_.get()
+   e_.delete(0, END)
+   e_.insert(0, str(current) + str(number))
 
    check_add = "mylabel_add" in globals()
    check_pi = "mylabel_pi" in globals()
@@ -408,8 +391,6 @@ def undo_last():
 def undo_last_():
     e_.delete(len(e_.get())-1,END)
 
-# def redo_last(): 
-
 
 
 def button_clear():
@@ -441,7 +422,6 @@ def button_multiply():
     f_num = float(first_number)
     e.delete(0, END)
 
-
 def button_divide():
     first_number = e.get()
     global f_num
@@ -451,25 +431,19 @@ def button_divide():
     e.delete(0, END)
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 def button_add_():
     first_number = e_.get()
     global f_num
     global op
-    global opp
-    opp = "add"
     op = "+"
     f_num = float(first_number)
     e_.delete(0, END)
-
 
 def button_subtract_():
     first_number = e_.get()
     global f_num
     global op
-    global opp
-    opp = "sub"
     op = "-"
     f_num = float(first_number)
     e_.delete(0, END)
@@ -479,18 +453,13 @@ def button_multiply_():
     global f_num
     global op
     op = "*"
-    global opp
-    opp = "mult"
     f_num = float(first_number)
     e_.delete(0, END)
-
 
 def button_divide_():
     first_number = e_.get()
     global f_num
     global op
-    global opp
-    opp = "div"
     op = "/"
     f_num = float(first_number)
     e_.delete(0, END)
@@ -502,7 +471,6 @@ def button_rem_():
     op = "%"
     f_num = float(first_number)
     e_.delete(0, END)
-
 
 def button_sqr_():
     first_number = e_.get()
@@ -533,7 +501,6 @@ def button_pow_():
     first_number = e_.get()
     global f_num
     global op
-    global a 
     global powering
     op = "**"
     f_num = float(first_number)
@@ -543,12 +510,11 @@ def button_factorial_():
     first_number = e_.get()
     global f_num
     global op
-    global a 
     global powering
     op = "fact"
     f_num = float(first_number)
     e_.delete(0, END)
-    
+
 
 def button_equal():
     global second_number
@@ -558,27 +524,32 @@ def button_equal():
 
         second_number = float(e.get())
         e.delete(0, END)
+        e_.delete(0, END)
 
 
         if op == "+":
             e.insert(0, f_num + float(second_number))
+            e_.insert(0, f_num + float(second_number))
             whatfunction_add()
          
 
 
         if op == "-":
             e.insert(0, f_num - float(second_number))
+            e_.insert(0, f_num - float(second_number))
             whatfunction_sub()
 
 
         if op == "*":
             e.insert(0, f_num * float(second_number))
+            e_.insert(0, f_num * float(second_number))
             whatfunction_mult()
          
 
 
         if op == "/":
             e.insert(0, f_num / float(second_number))
+            e_.insert(0, f_num / float(second_number))
             whatfunction_div()
            
     except NameError:
@@ -605,6 +576,7 @@ def button_equal():
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def button_equal_():
+
     global second_number
     global myerrorlabel
 
@@ -624,47 +596,68 @@ def button_equal_():
         else:
             second_number = float(e_.get())
             e_.delete(0, END)
+            e.delete(0, END)
 
 
         if op == "+":
             e_.insert(0, f_num + float(second_number))
-            whatfunction_add()
+            e.insert(0, f_num + float(second_number))
+            e.delete(0, END)
+            whatfunction_add_()
 
         if op == "-":
             e_.insert(0, f_num - float(second_number))
-            whatfunction_sub()
+            e.insert(0, f_num - float(second_number))
+            e.delete(0, END)
+            whatfunction_sub_()
 
         if op == "*":
             e_.insert(0, f_num * float(second_number))
-            whatfunction_mult()
+            e.insert(0, f_num * float(second_number))
+            e.delete(0, END)
+            whatfunction_mult_()
 
         if op == "/":
             e_.insert(0, f_num / float(second_number))
-            whatfunction_div()
+            e.insert(0, f_num / float(second_number))
+            e.delete(0, END)
+            whatfunction_div_()
 
         if op == "%":
             e_.insert(0, f_num % float(second_number))
+            e.insert(0, f_num % float(second_number))
+            e.delete(0, END)
             whatfunction_rem()
 
         if op == "**":
             e_.insert(0, math.pow(f_num, second_number))
+            e.insert(0, math.pow(f_num, second_number))
+            e.delete(0, END)
             whatfunction_pow()
 
 
         if op == "sqr":
             e_.insert(0, f_num * f_num)
+            e.insert(0, f_num * f_num)
+            e.delete(0, END)
             whatfunction_sqr()
 
         if op == 'pi':
             e_.insert(0, f_num * 3.141592653589793)
+            e.insert(0, f_num * 3.141592653589793)
+            e.delete(0, END)
             whatfunction_pi()
       
         if op == 'sqrt':
             e_.insert(0, math.sqrt(f_num))
+            e.insert(0, math.sqrt(f_num))
+            e.delete(0, END)
             whatfunction_sqrt()
             
         if op == 'fact':
             e_.insert(0, math.factorial(f_num))
+            e.insert(0, math.factorial(f_num))
+            e.delete(0, END)
             whatfunction_fact()
 
     except NameError:
@@ -691,45 +684,43 @@ def button_equal_():
         
 
   ## Make our labels 
+
 def whatfunction_add():
-    if op == "+":
-        global mylabel_add
-        mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
-        mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
-    
-    if opp == "add":
-        mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
-        mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+    global mylabel_add
+    mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
+    mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+def whatfunction_add_():
+    global mylabel_add
+    mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
+    mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+
 
 def whatfunction_sub():
     global mylabel_sub
-    if op == "-":
-        mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
-        mylabel_sub.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+    mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
+    mylabel_sub.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+def whatfunction_sub_():
+    global mylabel_sub
+    mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
+    mylabel_sub.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
-    if opp == "sub":
-        mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
-        mylabel_sub.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_mult():
     global mylabel_mult
-    if op == "*":
-        mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
-        mylabel_mult.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
-
-    if opp == "mult":
-        mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
-        mylabel_mult.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+    mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
+    mylabel_mult.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+def whatfunction_mult_():    
+    global mylabel_mult
+    mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
+    mylabel_mult.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_div():
     global mylabel_div
-    if op == "/":
-        mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
-        mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
-
-    if opp == "div":
-        mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
-        mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+    mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
+    mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+def whatfunction_div_():
+    mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
+    mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -812,16 +803,16 @@ Button_9.configure(bg="grey", fg="white")
 """"""""""""""""""""""""""""""""""""""""""
 
 ##def advanced():
-Button_1_ = Button(tab2, text="1", padx=20, pady=15, command=lambda: button_click_(1))
-Button_2_ = Button(tab2, text="2", padx=20, pady=15, command=lambda: button_click_(2))
-Button_3_ = Button(tab2, text="3", padx=20, pady=15, command=lambda: button_click_(3))
-Button_4_ = Button(tab2, text="4", padx=20, pady=15, command=lambda: button_click_(4))
-Button_5_ = Button(tab2, text="5", padx=20, pady=15, command=lambda: button_click_(5))
-Button_6_ = Button(tab2, text="6", padx=20, pady=15, command=lambda: button_click_(6))
-Button_7_ = Button(tab2, text="7", padx=20, pady=15, command=lambda: button_click_(7))
-Button_8_ = Button(tab2, text="8", padx=20, pady=15, command=lambda: button_click_(8))
-Button_9_ = Button(tab2, text="9", padx=20, pady=15, command=lambda: button_click_(9))
-Button_0_ = Button(tab2, text="0", padx=20, pady=15, command=lambda: button_click_(0))
+Button_1_ = Button(tab2, text="1", padx=20, pady=15, command=lambda: button_click(1))
+Button_2_ = Button(tab2, text="2", padx=20, pady=15, command=lambda: button_click(2))
+Button_3_ = Button(tab2, text="3", padx=20, pady=15, command=lambda: button_click(3))
+Button_4_ = Button(tab2, text="4", padx=20, pady=15, command=lambda: button_click(4))
+Button_5_ = Button(tab2, text="5", padx=20, pady=15, command=lambda: button_click(5))
+Button_6_ = Button(tab2, text="6", padx=20, pady=15, command=lambda: button_click(6))
+Button_7_ = Button(tab2, text="7", padx=20, pady=15, command=lambda: button_click(7))
+Button_8_ = Button(tab2, text="8", padx=20, pady=15, command=lambda: button_click(8))
+Button_9_ = Button(tab2, text="9", padx=20, pady=15, command=lambda: button_click(9))
+Button_0_ = Button(tab2, text="0", padx=20, pady=15, command=lambda: button_click(0))
 
 Button_add_ = Button(tab2, text="+", padx=17, pady=15, command=button_add_)
 Button_equal_ = Button(tab2, text="=", padx=20, pady=15, command=button_equal_)
@@ -929,6 +920,3 @@ Button_exit_.grid(row=6, column=3)
 # Create a main loop
 light_mode()
 root.mainloop()
-
-
-
