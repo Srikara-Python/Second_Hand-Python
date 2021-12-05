@@ -1,6 +1,7 @@
 """ Scientific Calculator made using tkinter module
 Free to copy and open-source """
 
+from optparse import OptParseError
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -90,7 +91,8 @@ def dark_mode():
     Button_point.configure(bg="black", fg=orig_color)
     Button_clear.configure(bg="black", fg=orig_color)
     Button_fact_.configure(bg="black", fg=orig_color)
-
+    Button_undo.configure(bg="black", fg=orig_color)
+    Button_undo_.configure(bg="black", fg=orig_color)
 
     Button_0_.configure(bg="black", fg=orig_color)  
     Button_1_.configure(bg="black", fg=orig_color)
@@ -152,7 +154,8 @@ def high_contrast_mode():
     Button_point.configure(bg="grey", fg="white")
     Button_clear.configure(bg="black", fg="white")
     Button_fact_.configure(bg="indigo", fg="white")
-
+    Button_undo.configure(bg="black", fg="white")
+    Button_undo_.configure(bg="black", fg="white")
 
     Button_0_.configure(bg="grey", fg="white")  
     Button_1_.configure(bg="grey", fg="white")
@@ -217,6 +220,8 @@ def light_mode():
     Button_point.configure(bg="white", fg="black")
     Button_clear.configure(bg="white", fg="black")
     Button_fact_.configure(bg="white", fg="black")
+    Button_undo.configure(bg="white", fg="black")
+    Button_undo_.configure(bg="white", fg="black")
 
 
     Button_0_.configure(bg="white", fg="black")  
@@ -397,6 +402,16 @@ def button_click_(number):
    if check_fact == True:
         mylabel_fact.destroy()
 
+def undo_last():
+    e.delete(len(e.get())-1,END)
+
+def undo_last_():
+    e_.delete(len(e_.get())-1,END)
+
+# def redo_last(): 
+
+
+
 def button_clear():
     e.delete(0, END) 
 def button_clear_():
@@ -442,6 +457,8 @@ def button_add_():
     first_number = e_.get()
     global f_num
     global op
+    global opp
+    opp = "add"
     op = "+"
     f_num = float(first_number)
     e_.delete(0, END)
@@ -451,6 +468,8 @@ def button_subtract_():
     first_number = e_.get()
     global f_num
     global op
+    global opp
+    opp = "sub"
     op = "-"
     f_num = float(first_number)
     e_.delete(0, END)
@@ -460,6 +479,8 @@ def button_multiply_():
     global f_num
     global op
     op = "*"
+    global opp
+    opp = "mult"
     f_num = float(first_number)
     e_.delete(0, END)
 
@@ -468,6 +489,8 @@ def button_divide_():
     first_number = e_.get()
     global f_num
     global op
+    global opp
+    opp = "div"
     op = "/"
     f_num = float(first_number)
     e_.delete(0, END)
@@ -671,27 +694,41 @@ def button_equal_():
 def whatfunction_add():
     if op == "+":
         global mylabel_add
-        mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number), bg='black', fg="white")
+        mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
         mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
-
+    
+    if opp == "add":
+        mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
+        mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_sub():
     global mylabel_sub
     if op == "-":
-        mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number), bg='black', fg="white")
+        mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
         mylabel_sub.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
+    if opp == "sub":
+        mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
+        mylabel_sub.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_mult():
     global mylabel_mult
     if op == "*":
-        mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number), bg='black', fg="white")
+        mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
+        mylabel_mult.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+
+    if opp == "mult":
+        mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
         mylabel_mult.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_div():
     global mylabel_div
     if op == "/":
-        mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number), bg='black', fg="white")
+        mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
+        mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+
+    if opp == "div":
+        mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
         mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -699,37 +736,37 @@ def whatfunction_div():
 def whatfunction_rem():
     global mylabel_rem
     if op == "%":
-        mylabel_rem = Label(root, text= str(f_num ) + " " + "%" + " " + str(second_number), bg='black', fg="white")
+        mylabel_rem = Label(root, text= str(f_num ) + " " + "%" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
         mylabel_rem.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_pow():
     global mylabel_pow
     if op == "**":
-        mylabel_pow = Label(root, text= str(f_num ) + " " + "**" + " " + str(second_number), bg='black', fg="white")
+        mylabel_pow = Label(root, text= str(f_num ) + " " + "**" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
         mylabel_pow.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_sqr():
     global mylabel_sqr
     if op == "sqr":
-        mylabel_sqr = Label(root, text= str(f_num ) + " square", bg='black', fg="white")
+        mylabel_sqr = Label(root, text= str(f_num ) + " square" + " = " + e_.get(), bg='black', fg="white")
         mylabel_sqr.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_pi():
     global mylabel_pi
     if op == "pi":
-        mylabel_pi = Label(root, text= str(f_num ) + " pi", bg='black', fg="white")
-        mylabel_pi.grid(row=2, column=0, columnspan=2, padx=40, pady=3, bg='black', fg="white")
+        mylabel_pi = Label(root, text= str(f_num ) + " pi" + " = " + e_.get(), bg='black', fg="white")
+        mylabel_pi.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
   
 def whatfunction_sqrt():
     global mylabel_sqrt
     if op == "sqrt":
-        mylabel_sqrt = Label(root, text= str(f_num ) + " sqrt", bg='black', fg="white")
+        mylabel_sqrt = Label(root, text= str(f_num ) + " sqrt" + " = " + e_.get(), bg='black', fg="white")
         mylabel_sqrt.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
         
 def whatfunction_fact():
     global mylabel_fact
     if op == "fact":
-        mylabel_fact = Label(root, text= str(f_num ) + " factorial", bg='black', fg="white")
+        mylabel_fact = Label(root, text= str(f_num ) + " factorial" + " = " + e_.get(), bg='black', fg="white")
         mylabel_fact.grid(row=2, column=0, columnspan=2, padx=40, pady=3)      
 
 
@@ -747,6 +784,8 @@ Button_9 = Button(tab1, text="9", padx=20, pady=15, command=lambda: button_click
 Button_0 = Button(tab1, text="0", padx=20, pady=15, command=lambda: button_click(0))
 
 Button_add = Button(tab1, text="+", padx=17, pady=15, command=button_add)
+Button_undo = Button(tab1, text="⌫ ", padx=17, pady=15, command=undo_last)
+
 Button_equal = Button(tab1, text="=", padx=18, pady=15, command=button_equal)
 Button_clear = Button(tab1, text="clear", padx=8, pady=15, command=button_clear)
 Button_subtract = Button(tab1, text="-", padx=20, pady=15, command=button_subtract)
@@ -794,12 +833,12 @@ Button_point_ = Button(tab2, text=".", padx=22, pady=15, command=lambda: button_
 Button_open_paranthesis_ = Button(tab2, text="(", padx=20, pady=15, command=lambda: button_click_('('))
 Button_close_paranthesis_ = Button(tab2, text=")", padx=20, pady=15, command=lambda: button_click_(')'))
 Button_remainder_ = Button(tab2, text="%", padx=20, pady=15, command=button_rem_)
-Button_power_ = Button(tab2, text="pow", padx=17, pady=15, command=button_pow_)
-Button_sqr_ = Button(tab2, text="sqr", padx=17, pady=15, command=button_sqr_)
+Button_power_ = Button(tab2, text="x^y", padx=12, pady=15, command=button_pow_)
+Button_sqr_ = Button(tab2, text="x^2", padx=12, pady=15, command=button_sqr_)
 Button_pi_ = Button(tab2, text="pi", padx=20, pady=15, command=button_pi_)
-Button_sqrt_ = Button(tab2, text="sqrt", padx=17, pady=15, command=button_sqrt_)
-Button_fact_ = Button(tab2, text="Fact", padx=17, pady=15, command=button_factorial_)
-
+Button_sqrt_ = Button(tab2, text="√", padx=17, pady=15, command=button_sqrt_)
+Button_fact_ = Button(tab2, text="x!", padx=17, pady=15, command=button_factorial_)
+Button_undo_ = Button(tab2, text="⌫", padx=17, pady=15, command=undo_last_)
 
 Button_exit_ = Button(tab2, text="Exit", padx=8, pady=15, command=button_exit_)
 
@@ -832,8 +871,6 @@ Button_9.grid(row=2, column=2)
 Button_0.grid(row=5, column=0)
 Button_point.grid(row=5, column=1)
 
-
-
 Button_add.grid(row=2, column=3)
 Button_subtract.grid(row=3, column=3)
 Button_multiply.grid(row=4, column=3)
@@ -843,6 +880,7 @@ Button_clear.grid(row=5, column=2, columnspan=1)
 Button_equal.grid(row=6, column=1, columnspan=1)
 Button_open_paranthesis.grid(row=6, column=0)
 Button_close_paranthesis.grid(row=6, column=2)
+Button_undo.grid(row=2, column=4)
 
 
 Button_exit.grid(row=6, column=3)
@@ -878,72 +916,15 @@ Button_sqrt_.grid(row=6, column=4, columnspan=1)
 Button_fact_.grid(row=2, column=5, columnspan=1)
 
 
-
-
 Button_clear_.grid(row=5, column=2, columnspan=1)
 Button_equal_.grid(row=6, column=1, columnspan=1)
 Button_open_paranthesis_.grid(row=6, column=0)
 Button_close_paranthesis_.grid(row=6, column=2)
+Button_undo_.grid(row=3, column=5, columnspan=1)
 
 
 Button_exit_.grid(row=6, column=3)
 
-Button_0.configure(bg="black", fg="white")  
-Button_1.configure(bg="black", fg="white")
-Button_2.configure(bg="black", fg="white")
-Button_3.configure(bg="black", fg="white")
-Button_4.configure(bg="black", fg="white")
-Button_5.configure(bg="black", fg="white")
-Button_6.configure(bg="black", fg="white")
-Button_7.configure(bg="black", fg="white")
-Button_8.configure(bg="black", fg="white")
-Button_9.configure(bg="black", fg="white")
-Button_add.configure(bg="black", fg="white")
-Button_subtract.configure(bg="black", fg="white")
-Button_divide.configure(bg="black", fg="white")
-Button_multiply.configure(bg="black", fg="white")
-Button_open_paranthesis.configure(bg="black", fg="white")
-Button_close_paranthesis.configure(bg="black", fg="white")
-Button_equal.configure(bg="black", fg="white")
-Button_exit.configure(bg="black", fg="white")
-Button_pi_.configure(bg="black", fg="white")
-Button_sqr_.configure(bg="black", fg="white")
-Button_sqrt_.configure(bg="black", fg="white")
-Button_remainder_.configure(bg="black", fg="white")
-Button_power_.configure(bg="black", fg="white")
-Button_point.configure(bg="black", fg="white")
-Button_clear.configure(bg="black", fg="white")
-Button_fact_.configure(bg="black", fg="white")
-
-
-
-
-Button_0_.configure(bg="black", fg="white")  
-Button_1_.configure(bg="black", fg="white")
-Button_2_.configure(bg="black", fg="white")
-Button_3_.configure(bg="black", fg="white")
-Button_4_.configure(bg="black", fg="white")
-Button_5_.configure(bg="black", fg="white")
-Button_6_.configure(bg="black", fg="white")
-Button_7_.configure(bg="black", fg="white")
-Button_8_.configure(bg="black", fg="white")
-Button_9_.configure(bg="black", fg="white")
-Button_add_.configure(bg="black", fg="white")
-Button_subtract_.configure(bg="black", fg="white")
-Button_divide_.configure(bg="black", fg="white")
-Button_multiply_.configure(bg="black", fg="white")
-Button_open_paranthesis_.configure(bg="black", fg="white")
-Button_close_paranthesis_.configure(bg="black", fg="white")
-Button_equal_.configure(bg="black", fg="white")
-Button_exit_.configure(bg="black", fg="white")
-Button_pi_.configure(bg="black", fg="white")
-Button_sqr_.configure(bg="black", fg="white")
-Button_sqrt_.configure(bg="black", fg="white")
-Button_remainder_.configure(bg="black", fg="white")
-Button_power_.configure(bg="black", fg="white")
-Button_point_.configure(bg="black", fg="white")
-Button_clear_.configure(bg="black", fg="white")
-Button_fact_.configure(bg="black", fg="white")
 
 # Create a main loop
 light_mode()
