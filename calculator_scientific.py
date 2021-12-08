@@ -399,121 +399,230 @@ def button_clear_():
     e_.delete(0, END)
     
 def button_add():
-    first_number = e.get()
-    global f_num
-    global op
-    op = "+"
-    f_num = float(first_number)
-    e.delete(0, END)
+    #  try:
+       
+        first_number = e.get()
+        global f_num
+        global s_num
+        global op
+        op = "+"
+        f_num = float(first_number)
+        e.delete(0, END)
+        # e.delete(0, END)
+        # second_number = e.get()
+        # s_num = float(second_number)
+        # e.delete(0, END)
+
+
+    #  except ValueError:
+        # second_number = e.get()
+        # s_num = float(second_number)
+    #     error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+    #     if error2 == True:
+    #         pass
+    #     else:
+    #         root.quit()
 
 def button_subtract():
-    first_number = e.get()
-    global f_num
-    global op
-    op = "-"
-    f_num = float(first_number)
-    e.delete(0, END)
+    try:
+        first_number = e.get()
+        global f_num
+        global op
+        op = "-"
+        f_num = float(first_number)
+        e.delete(0, END)
+
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
+
 
 def button_multiply():
-    first_number = e.get()
-    global f_num
-    global op
-    op = "*"
-    f_num = float(first_number)
-    e.delete(0, END)
+    try:
+        first_number = e.get()
+        global f_num
+        global op
+        op = "*"
+        f_num = float(first_number)
+        e.delete(0, END)
+
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
+
 
 def button_divide():
-    first_number = e.get()
-    global f_num
-    global op
-    op = "/"
-    f_num = float(first_number)
-    e.delete(0, END)
+    try:
+        first_number = e.get()
+        global f_num
+        global op
+        op = "/"
+        f_num = float(first_number)
+        e.delete(0, END)
+
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 def button_add_():
-    first_number = e_.get()
-    global f_num
-    global op
-    op = "+"
-    f_num = float(first_number)
-    e_.delete(0, END)
+    try:
+        first_number = e_.get()
+        global f_num
+        global op
+        op = "+"
+        f_num = float(first_number)
+        e_.delete(0, END)
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
+
 
 def button_subtract_():
-    first_number = e_.get()
-    global f_num
-    global op
-    op = "-"
-    f_num = float(first_number)
-    e_.delete(0, END)
-
+    try:
+        first_number = e_.get()
+        global f_num
+        global op
+        op = "-"
+        f_num = float(first_number)
+        e_.delete(0, END)
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
 def button_multiply_():
-    first_number = e_.get()
-    global f_num
-    global op
-    op = "*"
-    f_num = float(first_number)
-    e_.delete(0, END)
+    try:
+        first_number = e_.get()
+        global f_num
+        global op
+        op = "*"
+        f_num = float(first_number)
+        e_.delete(0, END)
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
 
 def button_divide_():
-    first_number = e_.get()
-    global f_num
-    global op
-    op = "/"
-    f_num = float(first_number)
-    e_.delete(0, END)
+    try:
+        first_number = e_.get()
+        global f_num
+        global op
+        op = "/"
+        f_num = float(first_number)
+        e_.delete(0, END)
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
 
 def button_rem_():
-    first_number = e_.get()
-    global f_num
-    global op
-    op = "%"
-    f_num = float(first_number)
-    e_.delete(0, END)
-
+    try:
+        first_number = e_.get()
+        global f_num
+        global op
+        op = "%"
+        f_num = float(first_number)
+        e_.delete(0, END)
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
 def button_sqr_():
-    first_number = e_.get()
-    global f_num
-    global op
-    op = "sqr"
-    f_num = float(first_number)
-    e_.delete(0, END)
+    try:
+        first_number = e_.get()
+        global f_num
+        global op
+        op = "sqr"
+        f_num = float(first_number)
+        e_.delete(0, END)
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
 
 def button_pi_():
-    first_number = e_.get()
-    global f_num
-    global op
-    op = "pi"
-    f_num = float(first_number)
-    e_.delete(0, END)
+    try:
+        first_number = e_.get()
+        global f_num
+        global op
+        op = "pi"
+        f_num = float(first_number)
+        e_.delete(0, END)
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
     
 def button_sqrt_():
-    first_number = e_.get()
-    global f_num
-    global op
-    global a 
-    op = "sqrt"
-    f_num = float(first_number)
-    e_.delete(0, END)
+    try:
+        first_number = e_.get()
+        global f_num
+        global op
+        op = "sqrt"
+        f_num = float(first_number)
+        e_.delete(0, END)
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
 
 def button_pow_():
-    first_number = e_.get()
-    global f_num
-    global op
-    global powering
-    op = "**"
-    f_num = float(first_number)
-    e_.delete(0, END)
+    try:
+        first_number = e_.get()
+        global f_num
+        global op
+        op = "**"
+        f_num = float(first_number)
+        e_.delete(0, END)
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
 
 def button_factorial_():
-    first_number = e_.get()
-    global f_num
-    global op
-    global powering
-    op = "fact"
-    f_num = float(first_number)
-    e_.delete(0, END)
+    try:
+        first_number = e_.get()
+        global f_num
+        global op
+        op = "fact"
+        f_num = float(first_number)
+        e_.delete(0, END)
+    except ValueError:
+        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
+        if error2 == True:
+            pass
+        else:
+            root.quit()
 
 
 def button_equal():
@@ -525,12 +634,14 @@ def button_equal():
         second_number = float(e.get())
         e.delete(0, END)
         e_.delete(0, END)
+        # third_number = float(e.get())
+        # e.delete(0, END)
 
 
         if op == "+":
-            e.insert(0, f_num + float(second_number))
-            e_.insert(0, f_num + float(second_number))
-            whatfunction_add()
+            e.insert(0, f_num + float(second_number)) # + float(third_number))
+            # e_.insert(0, f_num + float(second_number))
+            # whatfunction_add()
          
 
 
