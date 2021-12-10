@@ -5,7 +5,9 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import math
-import new_win
+
+from cv2 import add
+# import new_win
 
 root = Tk()
 root.title("Sceintific Calculator")
@@ -31,12 +33,6 @@ tabControl.add(tab2, text ='Scientific')
 tabControl.grid(row=0, column=0)
   
 
-open_button = Button(tab1, text="Click!", command=new_win.new_wind, padx=2, pady=2)
-open_button.grid(row=0, column=3)
-open_button_ = Button(tab2, text="Click!", command=new_win.new_wind, padx=2, pady=2, bg='black', fg="white")
-open_button_.grid(row=0, column=3)
-
-
 e = Entry(tab1, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=10, padx=5, pady=5)
 e_ = Entry(tab2, width=35, borderwidth=5)
@@ -58,8 +54,6 @@ def dark_mode():
     settingsmenu.configure(bg="black", fg=orig_color)
     editmenu.configure(bg="black", fg=orig_color)
 
-    open_button_.configure(bg="black", fg=orig_color)  
-    open_button.configure(bg="black", fg=orig_color)  
     Button_0.configure(bg="black", fg=orig_color)  
     Button_1.configure(bg="black", fg=orig_color)
     Button_2.configure(bg="black", fg=orig_color)
@@ -121,8 +115,7 @@ def high_contrast_mode():
     settingsmenu.configure(bg="black", fg="white")
     editmenu.configure(bg="black", fg="white")
 
-    open_button_.configure(bg="black", fg="white")  
-    open_button.configure(bg="black", fg="white")  
+
     Button_0.configure(bg="grey", fg="white")  
     Button_1.configure(bg="grey", fg="white")
     Button_2.configure(bg="grey", fg="white")
@@ -183,8 +176,7 @@ def light_mode():
     settingsmenu.configure(bg="white", fg="black")
     editmenu.configure(bg="white", fg="black")
 
-    open_button_.configure(bg="white", fg="black")  
-    open_button.configure(bg="white", fg="black")  
+
     Button_0.configure(bg="white", fg="black")  
     Button_1.configure(bg="white", fg="black")
     Button_2.configure(bg="white", fg="black")
@@ -285,7 +277,7 @@ aboutmenu.configure(bg="black", fg="white")
 
 settingsmenu.configure(bg="black", fg="white")
 editmenu.configure(bg="black", fg="white")
-open_button.configure(bg="black", fg="white")
+
 
 def button_click(number):
    current = e.get()
@@ -340,6 +332,7 @@ def button_click(number):
         """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def button_click_(number):
+   global current
    current = e_.get()
    e_.delete(0, END)
    e_.insert(0, str(current) + str(number))
@@ -391,277 +384,51 @@ def undo_last():
 def undo_last_():
     e_.delete(len(e_.get())-1,END)
 
-
-
 def button_clear():
     e.delete(0, END) 
 def button_clear_():
     e_.delete(0, END)
-    
-def button_add():
-    #  try:
-       
-        first_number = e.get()
-        global f_num
-        global s_num
-        global op
-        op = "+"
-        f_num = float(first_number)
-        e.delete(0, END)
-        # e.delete(0, END)
-        # second_number = e.get()
-        # s_num = float(second_number)
-        # e.delete(0, END)
 
-
-    #  except ValueError:
-        # second_number = e.get()
-        # s_num = float(second_number)
-    #     error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-    #     if error2 == True:
-    #         pass
-    #     else:
-    #         root.quit()
-
-def button_subtract():
-    try:
-        first_number = e.get()
-        global f_num
-        global op
-        op = "-"
-        f_num = float(first_number)
-        e.delete(0, END)
-
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-
-
-def button_multiply():
-    try:
-        first_number = e.get()
-        global f_num
-        global op
-        op = "*"
-        f_num = float(first_number)
-        e.delete(0, END)
-
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-
-
-def button_divide():
-    try:
-        first_number = e.get()
-        global f_num
-        global op
-        op = "/"
-        f_num = float(first_number)
-        e.delete(0, END)
-
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-def button_add_():
-    try:
-        first_number = e_.get()
-        global f_num
-        global op
-        op = "+"
-        f_num = float(first_number)
-        e_.delete(0, END)
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-
-
-def button_subtract_():
-    try:
-        first_number = e_.get()
-        global f_num
-        global op
-        op = "-"
-        f_num = float(first_number)
-        e_.delete(0, END)
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-def button_multiply_():
-    try:
-        first_number = e_.get()
-        global f_num
-        global op
-        op = "*"
-        f_num = float(first_number)
-        e_.delete(0, END)
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-
-def button_divide_():
-    try:
-        first_number = e_.get()
-        global f_num
-        global op
-        op = "/"
-        f_num = float(first_number)
-        e_.delete(0, END)
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-
-def button_rem_():
-    try:
-        first_number = e_.get()
-        global f_num
-        global op
-        op = "%"
-        f_num = float(first_number)
-        e_.delete(0, END)
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-def button_sqr_():
-    try:
-        first_number = e_.get()
-        global f_num
-        global op
-        op = "sqr"
-        f_num = float(first_number)
-        e_.delete(0, END)
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-
-def button_pi_():
-    try:
-        first_number = e_.get()
-        global f_num
-        global op
-        op = "pi"
-        f_num = float(first_number)
-        e_.delete(0, END)
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-    
-def button_sqrt_():
-    try:
-        first_number = e_.get()
-        global f_num
-        global op
-        op = "sqrt"
-        f_num = float(first_number)
-        e_.delete(0, END)
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-
-def button_pow_():
-    try:
-        first_number = e_.get()
-        global f_num
-        global op
-        op = "**"
-        f_num = float(first_number)
-        e_.delete(0, END)
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-
-def button_factorial_():
-    try:
-        first_number = e_.get()
-        global f_num
-        global op
-        op = "fact"
-        f_num = float(first_number)
-        e_.delete(0, END)
-    except ValueError:
-        error2 = messagebox.askokcancel("Value Error ", "Enter an valid expression !")
-        if error2 == True:
-            pass
-        else:
-            root.quit()
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def button_equal():
-    global second_number
-    global myerrorlabel
 
     try:
 
-        second_number = float(e.get())
-        e.delete(0, END)
-        e_.delete(0, END)
-        # third_number = float(e.get())
-        # e.delete(0, END)
+        result_add = e.get().find("+")
+        result_sub = e.get().find("-")
+        result_mult = e.get().find("*")
+        result_div = e.get().find("/")
 
 
-        if op == "+":
-            e.insert(0, f_num + float(second_number)) # + float(third_number))
-            # e_.insert(0, f_num + float(second_number))
-            # whatfunction_add()
-         
+        if result_add >= 0:
+            global add1
+            add1 = e.get()
+            add = eval(e.get())
+            e.delete(0, END)
+            e_.delete(0, END)
+            e.insert(0, add) 
+            whatfunction_add()
 
 
-        if op == "-":
-            e.insert(0, f_num - float(second_number))
-            e_.insert(0, f_num - float(second_number))
-            whatfunction_sub()
+        if result_sub >= 0:
+            sub = eval(e.get())
+            e.delete(0, END)
+            e_.delete(0, END)
+            e.insert(0, sub) 
 
 
-        if op == "*":
-            e.insert(0, f_num * float(second_number))
-            e_.insert(0, f_num * float(second_number))
-            whatfunction_mult()
-         
-
-
-        if op == "/":
-            e.insert(0, f_num / float(second_number))
-            e_.insert(0, f_num / float(second_number))
-            whatfunction_div()
+        if result_mult >= 0:
+            mult = eval(e.get())
+            e.delete(0, END)
+            e_.delete(0, END)
+            e.insert(0, mult) 
+            
+        if result_div >= 0:
+            div = eval(e.get())
+            e.delete(0, END)
+            e_.delete(0, END)
+            e.insert(0, div) 
            
     except NameError:
         error = messagebox.askokcancel("Name Error ", "Please Enter an valid expression")
@@ -684,92 +451,97 @@ def button_equal():
         else:
             root.quit()
 
+    except SyntaxError:
+        error3 = messagebox.askokcancel("Value Error ", "Did u learn maths ?")
+        if error3 == True:
+            pass
+        else:
+            root.quit()
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def button_equal_():
 
     global second_number
     global myerrorlabel
-
+    result_add = e_.get().find("+")
+    result_sub = e_.get().find("-")
+    result_mult = e_.get().find("*")
+    result_div = e_.get().find("/")
+    result_rem = e_.get().find("%")
+    result_pow = e_.get().find("**")
+    result_sqr = e_.get().find("* 2")
+    result_pi = e_.get().find("3.141592653589793")
+    result_sqrt = e_.get().find("sqrt")
+    result_fact = e_.get().find("fact")
     try:
-        if op == 'sqr':
-            second_number = f_num
 
-        elif op == 'pi':
-            second_number = '3.141592653589793'
-
-        elif op == 'sqrt':
-            second_number = f_num
-            
-        elif op == 'fact':
-            second_number = f_num
-
-        else:
-            second_number = float(e_.get())
+        if result_add >= 0:
+            global add
+            add = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
+            e_.insert(0, add) 
+            whatfunction_add()
 
 
-        if op == "+":
-            e_.insert(0, f_num + float(second_number))
-            e.insert(0, f_num + float(second_number))
+        if result_sub >= 0:
+            sub = eval(e_.get())
+            e_.delete(0, END)
             e.delete(0, END)
-            whatfunction_add_()
-
-        if op == "-":
-            e_.insert(0, f_num - float(second_number))
-            e.insert(0, f_num - float(second_number))
-            e.delete(0, END)
-            whatfunction_sub_()
-
-        if op == "*":
-            e_.insert(0, f_num * float(second_number))
-            e.insert(0, f_num * float(second_number))
-            e.delete(0, END)
-            whatfunction_mult_()
-
-        if op == "/":
-            e_.insert(0, f_num / float(second_number))
-            e.insert(0, f_num / float(second_number))
-            e.delete(0, END)
-            whatfunction_div_()
-
-        if op == "%":
-            e_.insert(0, f_num % float(second_number))
-            e.insert(0, f_num % float(second_number))
-            e.delete(0, END)
-            whatfunction_rem()
-
-        if op == "**":
-            e_.insert(0, math.pow(f_num, second_number))
-            e.insert(0, math.pow(f_num, second_number))
-            e.delete(0, END)
-            whatfunction_pow()
+            e_.insert(0, sub) 
 
 
-        if op == "sqr":
-            e_.insert(0, f_num * f_num)
-            e.insert(0, f_num * f_num)
+        if result_mult >= 0:
+            mult = eval(e_.get())
+            e_.delete(0, END)
             e.delete(0, END)
-            whatfunction_sqr()
-
-        if op == 'pi':
-            e_.insert(0, f_num * 3.141592653589793)
-            e.insert(0, f_num * 3.141592653589793)
-            e.delete(0, END)
-            whatfunction_pi()
-      
-        if op == 'sqrt':
-            e_.insert(0, math.sqrt(f_num))
-            e.insert(0, math.sqrt(f_num))
-            e.delete(0, END)
-            whatfunction_sqrt()
+            e_.insert(0, mult) 
             
-        if op == 'fact':
-            e_.insert(0, math.factorial(f_num))
-            e.insert(0, math.factorial(f_num))
+        if result_div >= 0:
+            div = eval(e_.get())
+            e_.delete(0, END)
             e.delete(0, END)
-            whatfunction_fact()
+            e_.insert(0, div) 
+
+        if result_rem >= 0:
+            rem = eval(e_.get())
+            e_.delete(0, END)
+            e.delete(0, END)
+            e_.insert(0, rem) 
+
+        if result_pow >= 0:
+            pow = eval(e_.get())
+            e_.delete(0, END)
+            e.delete(0, END)
+            e_.insert(0, pow) 
+
+        if result_sqr >= 0:
+            sqr = eval(e_.get())
+            e_.delete(0, END)
+            e.delete(0, END)
+            e_.insert(0, sqr) 
+
+        if result_pi >= 0:
+            pi = eval(e_.get())
+            e_.delete(0, END)
+            e.delete(0, END)
+            e_.insert(0, pi) 
+        
+        if result_sqrt >= 0:
+            sqrt = eval(e_.get())
+            e_.delete(0, END)
+            e.delete(0, END)
+            e_.insert(0, sqrt) 
+
+        if result_fact >= 0:
+            fact = e_.get()
+            facto = int ( ''.join(filter(str.isdigit, fact) ) )
+            e_.delete(0, END)
+            e.delete(0, END)
+            e_.insert(0, math.factorial(facto))
+       
 
     except NameError:
         error = messagebox.askokcancel("Name Error ", "Please Enter an valid expression")
@@ -792,13 +564,18 @@ def button_equal_():
         else:
             root.quit()
         
-        
+    except SyntaxError:
+        error3 = messagebox.askokcancel("Value Error ", "Did u learn maths ?")
+        if error3 == True:
+            pass
+        else:
+            root.quit()
 
   ## Make our labels 
 
 def whatfunction_add():
     global mylabel_add
-    mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
+    mylabel_add = Label(root, text= add1 + " = " + e.get(), bg='black', fg="white")
     mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 def whatfunction_add_():
     global mylabel_add
@@ -885,14 +662,17 @@ Button_8 = Button(tab1, text="8", padx=20, pady=15, command=lambda: button_click
 Button_9 = Button(tab1, text="9", padx=20, pady=15, command=lambda: button_click(9))
 Button_0 = Button(tab1, text="0", padx=20, pady=15, command=lambda: button_click(0))
 
-Button_add = Button(tab1, text="+", padx=17, pady=15, command=button_add)
+Button_add = Button(tab1, text="+", padx=17, pady=15, command=lambda: button_click(' + '))
+Button_subtract = Button(tab1, text="-", padx=20, pady=15, command=lambda: button_click(' - '))
+Button_multiply = Button(tab1, text="x", padx=18, pady=15, command=lambda: button_click(' * '))
+Button_divide = Button(tab1, text="÷", padx=17, pady=15, command=lambda: button_click(' / '))
+
 Button_undo = Button(tab1, text="⌫ ", padx=17, pady=15, command=undo_last)
 
 Button_equal = Button(tab1, text="=", padx=18, pady=15, command=button_equal)
 Button_clear = Button(tab1, text="clear", padx=8, pady=15, command=button_clear)
-Button_subtract = Button(tab1, text="-", padx=20, pady=15, command=button_subtract)
-Button_multiply = Button(tab1, text="x", padx=18, pady=15, command=button_multiply)
-Button_divide = Button(tab1, text="÷", padx=17, pady=15, command=button_divide)
+
+
 Button_point = Button(tab1, text=".", padx=22, pady=15, command=lambda: button_click('.'))
 Button_open_paranthesis = Button(tab1, text="(", padx=20, pady=15, command=lambda: button_click('('))
 Button_close_paranthesis = Button(tab1, text=")", padx=20, pady=15, command=lambda: button_click(')'))
@@ -901,16 +681,7 @@ Button_close_paranthesis = Button(tab1, text=")", padx=20, pady=15, command=lamb
 
 Button_exit = Button(tab1, text="Exit", padx=8, pady=15, command=button_exit)
 
-Button_0.configure(bg="grey", fg="white")  
-Button_1.configure(bg="grey", fg="white")
-Button_2.configure(bg="grey", fg="white")
-Button_3.configure(bg="grey", fg="white")
-Button_4.configure(bg="grey", fg="white")
-Button_5.configure(bg="grey", fg="white")
-Button_6.configure(bg="grey", fg="white")
-Button_7.configure(bg="grey", fg="white")
-Button_8.configure(bg="grey", fg="white")
-Button_9.configure(bg="grey", fg="white")
+
 """"""""""""""""""""""""""""""""""""""""""
 
 ##def advanced():
@@ -925,36 +696,27 @@ Button_8_ = Button(tab2, text="8", padx=20, pady=15, command=lambda: button_clic
 Button_9_ = Button(tab2, text="9", padx=20, pady=15, command=lambda: button_click(9))
 Button_0_ = Button(tab2, text="0", padx=20, pady=15, command=lambda: button_click(0))
 
-Button_add_ = Button(tab2, text="+", padx=17, pady=15, command=button_add_)
+Button_add_ = Button(tab2, text="+", padx=17, pady=15, command=lambda: button_click('+'))
+Button_subtract_ = Button(tab2, text="-", padx=20, pady=15, command=lambda: button_click('-'))
+Button_multiply_ = Button(tab2, text="x", padx=18, pady=15, command=lambda: button_click('*'))
+Button_divide_ = Button(tab2, text="÷", padx=17, pady=15, command=lambda: button_click('/'))
+
 Button_equal_ = Button(tab2, text="=", padx=20, pady=15, command=button_equal_)
 Button_clear_ = Button(tab2, text="clear", padx=8, pady=15, command=button_clear_)
-Button_subtract_ = Button(tab2, text="-", padx=20, pady=15, command=button_subtract_)
-Button_multiply_ = Button(tab2, text="x", padx=18, pady=15, command=button_multiply_)
-Button_divide_ = Button(tab2, text="÷", padx=17, pady=15, command=button_divide_)
+
 Button_point_ = Button(tab2, text=".", padx=22, pady=15, command=lambda: button_click_('.'))
 Button_open_paranthesis_ = Button(tab2, text="(", padx=20, pady=15, command=lambda: button_click_('('))
 Button_close_paranthesis_ = Button(tab2, text=")", padx=20, pady=15, command=lambda: button_click_(')'))
-Button_remainder_ = Button(tab2, text="%", padx=20, pady=15, command=button_rem_)
-Button_power_ = Button(tab2, text="x^y", padx=12, pady=15, command=button_pow_)
-Button_sqr_ = Button(tab2, text="x^2", padx=12, pady=15, command=button_sqr_)
-Button_pi_ = Button(tab2, text="pi", padx=20, pady=15, command=button_pi_)
-Button_sqrt_ = Button(tab2, text="√", padx=17, pady=15, command=button_sqrt_)
-Button_fact_ = Button(tab2, text="x!", padx=17, pady=15, command=button_factorial_)
+Button_remainder_ = Button(tab2, text="%", padx=20, pady=15, command=lambda: button_click('%'))
+Button_power_ = Button(tab2, text="x^y", padx=12, pady=15, command=lambda: button_click('**'))
+
+Button_sqr_ = Button(tab2, text="x^2", padx=12, pady=15, command=lambda: button_click(' * ' + e_.get()))
+Button_pi_ = Button(tab2, text="pi", padx=20, pady=15, command=lambda: button_click('* 3.141592653589793'))
+Button_sqrt_ = Button(tab2, text="√", padx=17, pady=15, command=lambda: button_click(' ** 0.5'))
+Button_fact_ = Button(tab2, text="x!", padx=17, pady=15, command=lambda: button_click(' fact'))
 Button_undo_ = Button(tab2, text="⌫", padx=17, pady=15, command=undo_last_)
 
 Button_exit_ = Button(tab2, text="Exit", padx=8, pady=15, command=button_exit_)
-
-Button_0_.configure(bg="grey", fg="white")  
-Button_1_.configure(bg="grey", fg="white")
-Button_2_.configure(bg="grey", fg="white")
-Button_3_.configure(bg="grey", fg="white")
-Button_4_.configure(bg="grey", fg="white")
-Button_5_.configure(bg="grey", fg="white")
-Button_6_.configure(bg="grey", fg="white")
-Button_7_.configure(bg="grey", fg="white")
-Button_8_.configure(bg="grey", fg="white")
-Button_9_.configure(bg="grey", fg="white")
-##
 
 
 #Put buttons on screen
