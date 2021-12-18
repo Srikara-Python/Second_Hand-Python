@@ -6,7 +6,6 @@ from tkinter import ttk
 from tkinter import messagebox
 import math
 
-from cv2 import add
 # import new_win
 
 root = Tk()
