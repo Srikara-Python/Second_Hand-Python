@@ -1,6 +1,7 @@
 """ Scientific Calculator made using tkinter module
 Free to copy and open-source """
 
+from datetime import datetime
 from curtsies import Input
 import webbrowser
 from tkinter import *
@@ -15,7 +16,7 @@ def main():
             print(repr(e))
 
 root = Tk()
-root.title("Sceintific Calculator")
+root.title("Second Brain")
 root.resizable(False, False)
 root.eval('tk::PlaceWindow . center')
 orig_color = root.cget("background")
@@ -35,6 +36,7 @@ tabControl = ttk.Notebook(root)
 tab1 = ttk.Frame(tabControl, style='My.TFrame')
 tab2 = ttk.Frame(tabControl, style='My.TFrame')
 tab3 = ttk.Frame(tabControl, style='My.TFrame')
+tab4 = ttk.Frame(tabControl, style='My.TFrame')
 
 
 ttk.Style().configure("TNotebook", background='black');
@@ -43,6 +45,7 @@ ttk.Style().configure("TNotebook", background='black');
 tabControl.add(tab1, text ='Standard')
 tabControl.add(tab2, text ='Scientific')
 tabControl.add(tab3, text ='Web Browser')
+tabControl.add(tab4, text ='Timer')
 
 tabControl.grid(row=0, column=0)
 
@@ -57,6 +60,82 @@ tabControl2.add(tab_link, text ='Quick Links')
 tabControl2.grid(row=0, column=0)
 
 
+"""""""""    TIMER      """""""""
+counter = 66600
+running = False
+def counter_label(label):
+    def count():
+        if running:
+            global counter
+   
+            # To manage the initial delay.
+            if counter==66600:            
+                display="Starting..."
+            else:
+                tt = datetime.fromtimestamp(counter)
+                string = tt.strftime("%H:%M:%S")
+                display=string
+   
+            label['text']=display   # Or label.config(text=display)
+   
+            # label.after(arg1, arg2) delays by 
+            # first argument given in milliseconds
+            # and then calls the function given as second argument.
+            # Generally like here we need to call the 
+            # function in which it is present repeatedly.
+            # Delays by 1000ms=1 seconds and call count again.
+            label.after(1000, count) 
+            counter += 1
+   
+    # Triggering the start of the counter.
+    count()     
+   
+# start function of the stopwatch
+def Start(label):
+    global running
+    running=True
+    counter_label(label)
+    start['state']='disabled'
+    stop['state']='normal'
+    reset['state']='normal'
+   
+# Stop function of the stopwatch
+def Stop():
+    global running
+    start['state']='normal'
+    stop['state']='disabled'
+    reset['state']='normal'
+    running = False
+   
+# Reset function of the stopwatch
+def Reset(label):
+    global counter
+    counter=66600
+   
+    # If rest is pressed after pressing stop.
+    if running==False:      
+        reset['state']='disabled'
+        label['text']='Welcome!'
+   
+    # If reset is pressed while the stopwatch is running.
+    else:               
+        label['text']='Starting...'
+   
+
+label = Label(tab4, text="Welcome!", fg="black", font="Verdana 30 bold")
+label.pack()
+f = Frame(tab4)
+start = Button(f, text='Start', width=6, command=lambda:Start(label))
+stop = Button(f, text='Stop',width=6,state='disabled', command=Stop)
+reset = Button(f, text='Reset',width=6, state='disabled', command=lambda:Reset(label))
+f.pack(anchor = 'center',pady=5)
+start.pack(side="left")
+stop.pack(side ="left")
+reset.pack(side="left")
+
+
+
+"""""""""    WEB      """""""""
 def open_page():
     webbrowser.open(entry.get())
 
@@ -127,6 +206,9 @@ link2 = Button(tab_link, text="linux mint", command=linux_mint)
 link2.pack() #(row=4, column=1)
 
 
+
+
+"""""""""    Calculator      """""""""
 e = Entry(tab1, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=10, padx=5, pady=5)
 e_ = Entry(tab2, width=35, borderwidth=5)
@@ -134,8 +216,6 @@ e_.grid(row=1, column=0, columnspan=5, padx=5, pady=5)
 
 e.configure(bg="white", fg='black')
 e_.configure(bg="white", fg="black")
-
-
 
 def dark_mode():
     ttk.Style().configure("TNotebook", background='black');
