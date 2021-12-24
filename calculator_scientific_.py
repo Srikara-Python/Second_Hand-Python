@@ -20,6 +20,7 @@ s1.configure('My.TFrame', background='black')
 
 tabControl = ttk.Notebook(root)
 
+
 tab1 = ttk.Frame(tabControl, style='My.TFrame')
 tab2 = ttk.Frame(tabControl, style='My.TFrame')
 tab3 = ttk.Frame(tabControl, style='My.TFrame')
@@ -34,14 +35,79 @@ tabControl.add(tab3, text ='Web Browser')
 
 tabControl.grid(row=0, column=0)
 
+tabControl2 = ttk.Notebook(tab3)
+tab_link = ttk.Frame(tabControl2, style='My.TFrame')
+tab_url = ttk.Frame(tabControl2, style='My.TFrame')
+ttk.Style().configure("TNotebook", background='black');
+tabControl2.add(tab_link, text ='Quick Links')
+tabControl2.add(tab_url, text ='Custom URL')
+tabControl2.grid(row=0, column=0)
+
+
 def open_page():
     webbrowser.open(entry.get())
 
-entry = Entry(tab3, width=50)
-entry.insert(0, "http://")
-entry.pack()
-b = Button(tab3, text='GO TO URL', command=open_page)
-b.pack()
+def entry_delete():
+    entry.delete(0, END)
+
+
+def custom_quick_link():
+    global quick_link_entry
+    global quick_link_name
+
+    custom_quick = Toplevel(root)
+
+    quick_link_entry_url = Label(custom_quick, text='Enter URL :- ').grid(row=0, column=0)
+    quick_link_entry = Entry(custom_quick)
+    quick_link_entry.grid(row=0, column=1)
+
+    quick_link_entry_name = Label(custom_quick, text='Enter Name :- ').grid(row=1, column=0)
+    quick_link_name = Entry(custom_quick)
+    quick_link_name.grid(row=1, column=1)
+
+    quick_link_button = Button(custom_quick, text="Use link", command=custom_quick_link_add).grid(row=2, column=0)
+     
+def whaturl():
+    webbrowser.open(quick_link_entry.get())
+
+
+def custom_quick_link_add():
+    # url = quick_link_entry.get()
+    name = quick_link_name.get()
+    button = Button(tab_link, text=name, command=whaturl)
+    button.pack(side=RIGHT)
+
+
+web_what = Label(tab_url, text="Enter a URL Below to open it in your fav browser")
+web_what.grid(row=1, column=0, columnspan=15)
+entry = Entry(tab_url, width=50)
+entry.insert(0, "")
+entry.grid(row=2, column=0, columnspan=15)
+b = Button(tab_url, text='GO TO URL', command=open_page)
+b.grid(row=3, column=0)
+b2 = Button(tab_url, text='clear', command=entry_delete)
+b2.grid(row=3, column=1)
+
+quick_links = Button(tab_link, text="Custom Quick Links", command=custom_quick_link)
+quick_links.pack() #grid(row=3, column=2)
+
+def github():
+    webbrowser.open('www.github.com')
+
+def linux_mint():
+    webbrowser.open('www.linuxmint.com')
+
+
+# frame1 =Frame(tab3, bg = "green",bd=10,width=100,  
+#              height=50,cursor = "target").grid(row=5, column=0) 
+
+
+link1 = Button(tab_link, text="Github", command=github)
+link1.pack() #(row=4, column=0)
+link2 = Button(tab_link, text="linux mint", command=linux_mint)
+link2.pack() #(row=4, column=1)
+
+
 
 webpage = entry.get()
 
@@ -189,6 +255,7 @@ def light_mode():
     s1.configure('My.TFrame', background="white")
     entry.configure(bg='white', fg='black')
     b.configure(bg='white', fg='black')
+    b2.configure(bg='white', fg='black')
     e.configure(bg=orig_color, fg='black')
     e_.configure(bg=orig_color, fg='black')
     menubar.configure(bg="white", fg="black")
@@ -506,7 +573,8 @@ def button_equal_():
     result_sqrt = e_.get().find("sqrt")
     result_fact = e_.get().find("fact")
     try:
-
+        global power_what
+        power_what = e_.get()
         if result_add >= 0:
             global add2
             add2 = e_.get()
@@ -546,6 +614,8 @@ def button_equal_():
             whatfunction_div_()
 
         if result_rem >= 0:
+            global rem2
+            rem2 = e_.get()
             rem = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
@@ -553,13 +623,15 @@ def button_equal_():
             whatfunction_rem()
 
         if result_pow >= 0:
-            pow = eval(e_.get())
+            pow1 = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
-            e_.insert(0, pow) 
+            e_.insert(0, pow1) 
             whatfunction_pow()
 
         if result_sqr >= 0:
+            global sqr2
+            sqr2 = e_.get()
             sqr = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
@@ -567,6 +639,8 @@ def button_equal_():
             whatfunction_sqr()
 
         if result_pi >= 0:
+            global pi2
+            pi2 = e_.get()
             pi = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
@@ -574,6 +648,8 @@ def button_equal_():
             whatfunction_pi()
         
         if result_sqrt >= 0:
+            global sqrt2
+            sqrt2 = e_.get()
             sqrt = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
@@ -581,6 +657,8 @@ def button_equal_():
             whatfunction_sqrt()
 
         if result_fact >= 0:
+            global fact2
+            fact2 = e_.get()
             fact = e_.get()
             facto = int ( ''.join(filter(str.isdigit, fact) ) )
             e_.delete(0, END)
@@ -653,6 +731,7 @@ def whatfunction_div():
     mylabel_div = Label(root, text= div1 +  " = " + e.get(), bg='black', fg="white")
     mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 def whatfunction_div_():
+    global mylabel_div
     mylabel_div = Label(root, text= div2 +  " = " + e_.get(), bg='black', fg="white")
     mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
@@ -660,40 +739,33 @@ def whatfunction_div_():
 
 def whatfunction_rem():
     global mylabel_rem
-    if op == "%":
-        mylabel_rem = Label(root, text= str(f_num ) + " " + "%" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
-        mylabel_rem.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+    mylabel_rem = Label(root, text= rem2 +  " = " + e_.get(), bg='black', fg="white")
+    mylabel_rem.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_pow():
     global mylabel_pow
-    if op == "**":
-        mylabel_pow = Label(root, text= str(f_num ) + " " + "**" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
-        mylabel_pow.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+    mylabel_pow = Label(root, text= power_what +  " = " + e_.get(), bg='black', fg="white")
+    mylabel_pow.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_sqr():
     global mylabel_sqr
-    if op == "sqr":
-        mylabel_sqr = Label(root, text= str(f_num ) + " square" + " = " + e_.get(), bg='black', fg="white")
-        mylabel_sqr.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+    mylabel_sqr = Label(root, text= power_what +  " = " + e_.get(), bg='black', fg="white")
+    mylabel_sqr.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_pi():
     global mylabel_pi
-    if op == "pi":
-        mylabel_pi = Label(root, text= str(f_num ) + " pi" + " = " + e_.get(), bg='black', fg="white")
-        mylabel_pi.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+    mylabel_pi = Label(root, text= power_what +  " = " + e_.get(), bg='black', fg="white")
+    mylabel_pi.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
   
 def whatfunction_sqrt():
     global mylabel_sqrt
-    if op == "sqrt":
-        mylabel_sqrt = Label(root, text= str(f_num ) + " sqrt" + " = " + e_.get(), bg='black', fg="white")
-        mylabel_sqrt.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
+    mylabel_sqrt = Label(root, text= power_what +  " = " + e_.get(), bg='black', fg="white")
+    mylabel_sqrt.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
         
 def whatfunction_fact():
     global mylabel_fact
-    if op == "fact":
-        mylabel_fact = Label(root, text= str(f_num ) + " factorial" + " = " + e_.get(), bg='black', fg="white")
-        mylabel_fact.grid(row=2, column=0, columnspan=2, padx=40, pady=3)      
-
+    mylabel_fact = Label(root, text= power_what +  " = " + e_.get(), bg='black', fg="white")
+    mylabel_fact.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 # Define buttons
 
