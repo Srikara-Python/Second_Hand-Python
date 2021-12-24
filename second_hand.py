@@ -1,8 +1,8 @@
 """ Scientific Calculator made using tkinter module
 Free to copy and open-source """
 
-from datetime import datetime
-from curtsies import Input
+from datetime import datetime, time
+import time
 import webbrowser
 from tkinter import *
 from tkinter import ttk
@@ -10,20 +10,14 @@ from tkinter import messagebox
 import math
 
 
-def main():
-    with Input(keynames='curses') as input_generator:
-        for e in input_generator:
-            print(repr(e))
-
 root = Tk()
-root.title("Second Brain")
+root.title("Second Hand")
 root.resizable(False, False)
 root.eval('tk::PlaceWindow . center')
 orig_color = root.cget("background")
 root.configure(bg='black')
 
 def event_handle(event):
-    # Replace the window's title with event.type: input key
     # root.title("{}: {}".format(str(event.type), event.keysym))
     key = event.keysym
 
@@ -45,7 +39,7 @@ ttk.Style().configure("TNotebook", background='black');
 tabControl.add(tab1, text ='Standard')
 tabControl.add(tab2, text ='Scientific')
 tabControl.add(tab3, text ='Web Browser')
-tabControl.add(tab4, text ='Timer')
+tabControl.add(tab4, text ='Time')
 
 tabControl.grid(row=0, column=0)
 
@@ -59,8 +53,96 @@ tabControl2.add(tab_link, text ='Quick Links')
 
 tabControl2.grid(row=0, column=0)
 
+tabControl3 = ttk.Notebook(tab4)
+tab_timer = ttk.Frame(tabControl3, style='My.TFrame')
+tab_stop_watch = ttk.Frame(tabControl3, style='My.TFrame')
+ttk.Style().configure("TNotebook", background='black');
+
+tabControl3.add(tab_stop_watch, text ='Stop Watch')
+tabControl3.add(tab_timer, text ='timer')
+
+tabControl3.grid(row=0, column=0)
+
 
 """""""""    TIMER      """""""""
+# Declaration of variables
+hour=StringVar()
+minute=StringVar()
+second=StringVar()
+  
+# setting the default value as 0
+hour.set("00")
+minute.set("00")
+second.set("00")
+  
+# Use of Entry class to take input from the user
+hourEntry= Entry(tab_timer, width=3, font=("Arial",18,""),
+                 textvariable=hour)
+hourEntry.place(x=60,y=20)
+  
+minuteEntry= Entry(tab_timer, width=3, font=("Arial",18,""),
+                   textvariable=minute)
+minuteEntry.place(x=110,y=20)
+  
+secondEntry= Entry(tab_timer, width=3, font=("Arial",18,""),
+                   textvariable=second)
+secondEntry.place(x=160,y=20)
+  
+  
+def submit():
+    try:
+        # the input provided by the user is
+        # stored in here :temp
+        temp = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
+    except:
+        print("Please input the right value")
+    while temp >-1:
+         
+        # divmod(firstvalue = temp//60, secondvalue = temp%60)
+        mins,secs = divmod(temp,60)
+  
+        # Converting the input entered in mins or secs to hours,
+        # mins ,secs(input = 110 min --> 120*60 = 6600 => 1hr :
+        # 50min: 0sec)
+        hours=0
+        if mins >60:
+             
+            # divmod(firstvalue = temp//60, secondvalue
+            # = temp%60)
+            hours, mins = divmod(mins, 60)
+         
+        # using format () method to store the value up to
+        # two decimal places
+        hour.set("{0:2d}".format(hours))
+        minute.set("{0:2d}".format(mins))
+        second.set("{0:2d}".format(secs))
+  
+        # updating the GUI window after decrementing the
+        # temp value every time
+        root.update()
+        time.sleep(1)
+  
+        # when temp value = 0; then a messagebox pop's up
+        # with a message:"Time's up"
+        if (temp == 0):
+            messagebox.showinfo("Time Countdown", "Time's up ")
+         
+        # after every one sec the value of temp will be decremented
+        # by one
+        temp -= 1
+ 
+# button widget
+btn = Button(tab_timer , text='Set Time Countdown', bd='2',
+             command= submit)
+btn.place(x = 30,y = 60)
+  
+# infinite loop which is required to
+# run tkinter program infinitely
+# until an interrupt occurs
+
+
+
+"""""""""    STOP WATCH      """""""""
 counter = 66600
 running = False
 def counter_label(label):
@@ -77,17 +159,10 @@ def counter_label(label):
                 display=string
    
             label['text']=display   # Or label.config(text=display)
-   
-            # label.after(arg1, arg2) delays by 
-            # first argument given in milliseconds
-            # and then calls the function given as second argument.
-            # Generally like here we need to call the 
-            # function in which it is present repeatedly.
-            # Delays by 1000ms=1 seconds and call count again.
+
             label.after(1000, count) 
             counter += 1
-   
-    # Triggering the start of the counter.
+
     count()     
    
 # start function of the stopwatch
@@ -122,9 +197,9 @@ def Reset(label):
         label['text']='Starting...'
    
 
-label = Label(tab4, text="Welcome!", fg="black", font="Verdana 30 bold")
+label = Label(tab_stop_watch, text="Welcome!", fg="black", font="Verdana 30 bold")
 label.pack()
-f = Frame(tab4)
+f = Frame(tab_stop_watch)
 start = Button(f, text='Start', width=6, command=lambda:Start(label))
 stop = Button(f, text='Stop',width=6,state='disabled', command=Stop)
 reset = Button(f, text='Reset',width=6, state='disabled', command=lambda:Reset(label))
@@ -223,6 +298,7 @@ def dark_mode():
     root.configure(bg='black')
     entry.configure(bg='black', fg='white')
     b.configure(bg='black', fg='white')
+    btn.configure(bg='black', fg='white')
     e.configure(bg="black", fg=orig_color)
     e_.configure(bg="black", fg=orig_color)
     menubar.configure(bg='black', fg=orig_color)
@@ -286,6 +362,7 @@ def high_contrast_mode():
     root.configure(bg='black')
     entry.configure(bg='white', fg='black')
     b.configure(bg='black', fg='white')
+    btn.configure(bg='black', fg='white')
     e.configure(bg="white", fg="black")
     e_.configure(bg="white", fg="black")
     menubar.configure(bg='black', fg="white")
@@ -350,6 +427,7 @@ def light_mode():
     s1.configure('My.TFrame', background="white")
     entry.configure(bg='white', fg='black')
     b.configure(bg='white', fg='black')
+    btn.configure(bg='white', fg='black')
     b2.configure(bg='white', fg='black')
     e.configure(bg=orig_color, fg='black')
     e_.configure(bg=orig_color, fg='black')
