@@ -1,12 +1,12 @@
 """ Scientific Calculator made using tkinter module
 Free to copy and open-source """
 
+import webbrowser
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import math
 
-# import new_win
 
 root = Tk()
 root.title("Sceintific Calculator")
@@ -22,15 +22,29 @@ tabControl = ttk.Notebook(root)
 
 tab1 = ttk.Frame(tabControl, style='My.TFrame')
 tab2 = ttk.Frame(tabControl, style='My.TFrame')
+tab3 = ttk.Frame(tabControl, style='My.TFrame')
+
 
 ttk.Style().configure("TNotebook", background='black');
 
 
 tabControl.add(tab1, text ='Standard')
 tabControl.add(tab2, text ='Scientific')
+tabControl.add(tab3, text ='Web Browser')
 
 tabControl.grid(row=0, column=0)
-  
+
+def open_page():
+    webbrowser.open(entry.get())
+
+entry = Entry(tab3, width=50)
+entry.insert(0, "http://")
+entry.pack()
+b = Button(tab3, text='GO TO URL', command=open_page)
+b.pack()
+
+webpage = entry.get()
+
 
 e = Entry(tab1, width=35, borderwidth=5)
 e.grid(row=1, column=0, columnspan=10, padx=5, pady=5)
@@ -46,6 +60,8 @@ def dark_mode():
     ttk.Style().configure("TNotebook", background='black');
     s1.configure('My.TFrame', background='black')
     root.configure(bg='black')
+    entry.configure(bg='black', fg='white')
+    b.configure(bg='black', fg='white')
     e.configure(bg="black", fg=orig_color)
     e_.configure(bg="black", fg=orig_color)
     menubar.configure(bg='black', fg=orig_color)
@@ -107,6 +123,8 @@ def high_contrast_mode():
     ttk.Style().configure("TNotebook", background='black');
     s1.configure('My.TFrame', background='black')
     root.configure(bg='black')
+    entry.configure(bg='white', fg='black')
+    b.configure(bg='black', fg='white')
     e.configure(bg="white", fg="black")
     e_.configure(bg="white", fg="black")
     menubar.configure(bg='black', fg="white")
@@ -166,8 +184,11 @@ def high_contrast_mode():
     Button_clear_.configure(bg="black", fg="white")
 
 def light_mode():
+    
     ttk.Style().configure("TNotebook", background="white");
     s1.configure('My.TFrame', background="white")
+    entry.configure(bg='white', fg='black')
+    b.configure(bg='white', fg='black')
     e.configure(bg=orig_color, fg='black')
     e_.configure(bg=orig_color, fg='black')
     menubar.configure(bg="white", fg="black")
@@ -393,7 +414,7 @@ def button_clear_():
 def button_equal():
 
     try:
-
+        
         result_add = e.get().find("+")
         result_sub = e.get().find("-")
         result_mult = e.get().find("*")
@@ -411,23 +432,33 @@ def button_equal():
 
 
         if result_sub >= 0:
+            global sub1
+            sub1 = e.get()
             sub = eval(e.get())
             e.delete(0, END)
             e_.delete(0, END)
             e.insert(0, sub) 
+            whatfunction_sub()
 
 
         if result_mult >= 0:
+            global mult1
+            mult1 = e.get()
+
             mult = eval(e.get())
             e.delete(0, END)
             e_.delete(0, END)
             e.insert(0, mult) 
+            whatfunction_mult()
             
         if result_div >= 0:
+            global div1
+            div1 = e.get()
             div = eval(e.get())
             e.delete(0, END)
             e_.delete(0, END)
             e.insert(0, div) 
+            whatfunction_div()
            
     except NameError:
         error = messagebox.askokcancel("Name Error ", "Please Enter an valid expression")
@@ -477,62 +508,77 @@ def button_equal_():
     try:
 
         if result_add >= 0:
-            global add
+            global add2
+            add2 = e_.get()
             add = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
             e_.insert(0, add) 
-            whatfunction_add()
+            whatfunction_add_()
 
 
         if result_sub >= 0:
+            global sub2
+            sub2 = e_.get()
             sub = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
             e_.insert(0, sub) 
+            whatfunction_sub_()
 
 
         if result_mult >= 0:
+            global mult2
+            mult2 = e_.get()
             mult = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
             e_.insert(0, mult) 
+            whatfunction_mult_()
             
         if result_div >= 0:
+            global div2
+            div2 = e_.get()
             div = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
             e_.insert(0, div) 
+            whatfunction_div_()
 
         if result_rem >= 0:
             rem = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
             e_.insert(0, rem) 
+            whatfunction_rem()
 
         if result_pow >= 0:
             pow = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
             e_.insert(0, pow) 
+            whatfunction_pow()
 
         if result_sqr >= 0:
             sqr = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
             e_.insert(0, sqr) 
+            whatfunction_sqr()
 
         if result_pi >= 0:
             pi = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
             e_.insert(0, pi) 
+            whatfunction_pi()
         
         if result_sqrt >= 0:
             sqrt = eval(e_.get())
             e_.delete(0, END)
             e.delete(0, END)
             e_.insert(0, sqrt) 
+            whatfunction_sqrt()
 
         if result_fact >= 0:
             fact = e_.get()
@@ -540,6 +586,7 @@ def button_equal_():
             e_.delete(0, END)
             e.delete(0, END)
             e_.insert(0, math.factorial(facto))
+            whatfunction_fact()
        
 
     except NameError:
@@ -578,35 +625,35 @@ def whatfunction_add():
     mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 def whatfunction_add_():
     global mylabel_add
-    mylabel_add = Label(root, text= str(f_num ) + " " + "+" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
+    mylabel_add = Label(root, text= add2 + " = " + e_.get(), bg='black', fg="white")
     mylabel_add.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 
 def whatfunction_sub():
     global mylabel_sub
-    mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
+    mylabel_sub = Label(root, text= sub1 +  " = " + e.get(), bg='black', fg="white")
     mylabel_sub.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 def whatfunction_sub_():
     global mylabel_sub
-    mylabel_sub = Label(root, text= str(f_num ) + " " + "-" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
+    mylabel_sub = Label(root, text= sub2 +  " = " + e_.get(), bg='black', fg="white")
     mylabel_sub.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 
 def whatfunction_mult():
     global mylabel_mult
-    mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
+    mylabel_mult = Label(root, text= mult1 +  " = " + e.get(), bg='black', fg="white")
     mylabel_mult.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 def whatfunction_mult_():    
     global mylabel_mult
-    mylabel_mult = Label(root, text= str(f_num ) + " " + "*" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
+    mylabel_mult = Label(root, text= mult2 +  " = " + e_.get(), bg='black', fg="white")
     mylabel_mult.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 def whatfunction_div():
     global mylabel_div
-    mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number) + " = " + e.get(), bg='black', fg="white")
+    mylabel_div = Label(root, text= div1 +  " = " + e.get(), bg='black', fg="white")
     mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 def whatfunction_div_():
-    mylabel_div = Label(root, text= str(f_num ) + " " + "/" + " " + str(second_number) + " = " + e_.get(), bg='black', fg="white")
+    mylabel_div = Label(root, text= div2 +  " = " + e_.get(), bg='black', fg="white")
     mylabel_div.grid(row=2, column=0, columnspan=2, padx=40, pady=3)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
