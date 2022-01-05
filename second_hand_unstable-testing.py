@@ -1,9 +1,9 @@
 """ Scientific Calculator made using tkinter module
 Free to copy and open-source """
 
-from datetime import datetime, time
-import time
-import webbrowser
+# from datetime import datetime, time
+# import time
+# import webbrowser
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
