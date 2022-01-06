@@ -218,9 +218,10 @@ def entry_delete():
     entry.delete(0, END)
 
 def whaturl():
-    webbrowser.open(quick_link_entry.get())
+    webbrowser.open(url)
 
 def custom_quick_link():
+    global url
     global urlwhat
     global quick_link_entry
     global quick_link_name
@@ -229,6 +230,7 @@ def custom_quick_link():
 
     quick_link_entry_url = Label(custom_quick, text='Enter URL :- ').grid(row=0, column=0)
     quick_link_entry = Entry(custom_quick)
+    url = quick_link_entry.get()
     quick_link_entry.insert(0, "")
     urlwhat = quick_link_entry.get()
     quick_link_entry.grid(row=0, column=1)
@@ -251,11 +253,11 @@ def custom_quick_link_add():
     else:
         # url = quick_link_entry.get()
         name = quick_link_name.get()
-        button = Button(tab_link, text=name, command=whaturl)
-        button.pack(side=RIGHT)
+        Button(tab_link, text=name, command=webbrowser.open(quick_link_entry.get()).pack(side=RIGHT))
+      
 
 
-web_what = Label(tab_url, text="Enter a URL above to open it in your fav browser")
+web_what = Label(tab_url, text="Enter a URL above to open it in your fav browsers")
 web_what.grid(row=4, column=0, columnspan=15)
 entry = Entry(tab_url, width=50)
 entry.insert(0, "")
