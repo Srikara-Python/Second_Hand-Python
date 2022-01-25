@@ -9,7 +9,6 @@ from tkinter import ttk
 from tkinter import messagebox
 import math
 
-
 root = Tk()
 root.title("Second Hand")
 root.resizable(False, False)
@@ -136,10 +135,6 @@ btn = Button(tab_timer , text='Set Time Countdown', bd='2',
              command= submit)
 btn.place(x = 30,y = 60)
   
-# infinite loop which is required to
-# run tkinter program infinitely
-# until an interrupt occurs
-
 
 
 """""""""    STOP WATCH      """""""""
@@ -1060,7 +1055,6 @@ Button_0_.grid(row=5, column=0)
 Button_point_.grid(row=5, column=1)
 
 
-
 Button_add_.grid(row=2, column=3)
 Button_subtract_.grid(row=3, column=3)
 Button_multiply_.grid(row=4, column=3)
@@ -1071,7 +1065,6 @@ Button_sqr_.grid(row=4, column=4, columnspan=1)
 Button_pi_.grid(row=5, column=4, columnspan=1)
 Button_sqrt_.grid(row=6, column=4, columnspan=1)
 Button_fact_.grid(row=2, column=5, columnspan=1)
-
 
 Button_clear_.grid(row=5, column=2, columnspan=1)
 Button_equal_.grid(row=6, column=1, columnspan=1)
