@@ -10,13 +10,13 @@ This app features a
 --> Our main motto is to bring in the most of productivity. 
 
 ## Windows :-
-Go to https://github.com/Srikara-Python/Scientific_Calculator-Python/releases and download the binary file and execute it as other exe files. 
+Go to https://github.com/ICanHackHackers/Second_Hand-Python/releases/tag/v_2.00 and download the binary file and execute it as other exe files. 
 
 # Linux :-
-Go to  https://github.com/Srikara-Python/Scientific_Calculator-Python/releases
-1) You can download the binary file and open it in a file manager . Right click on it > properties > permissions tab > and check the "execute file as a program". Then you can o[pen it as a program. These steps are tested in ubuntu , linux mint and fedora.
+Go to https://github.com/ICanHackHackers/Second_Hand-Python/releases/tag/v_2.00
+1) You can download the binary file and open it in a file manager . Right click on it > properties > permissions tab > and check the "execute file as a program". Then you can open it as a program. These steps are tested in ubuntu , linux mint and fedora.
 2) For other distro's , you can download the source code and run the calculator_scientific.py file. 
 
 
 # Contact:
-you can contact me at srikaras07@gmail.com
+you can contact me at srikaraswork@gmail.com
