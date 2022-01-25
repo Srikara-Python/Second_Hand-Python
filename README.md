@@ -1,6 +1,3 @@
-[![Srikara's GitHub stats](https://github-readme-stats.vercel.app/api?username=Srikara-Python)](https://github.com/anuraghazra/github-readme-stats)
-
-
 
 # Second Hand-Python
 Made in python tkinter module for learning purpose. will be updated often
